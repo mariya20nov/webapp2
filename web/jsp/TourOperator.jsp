@@ -13,12 +13,10 @@
 </head>
 <body>
 <form>
-    <form action="clients" method="post">
-    <a href="/jsp/clients.jsp">clients</a>
-    </form>
-    <a href="/jsp/tours.jsp">tours</a>
-    <a href="/jsp/resorts.jsp">resorts</a>
-    <a href="/jsp/forms.jsp">forms</a>
+    <a href="clients">clients</a>
+    <a href="tours">tours</a>
+    <a href="/resorts">resorts</a>
+    <a href="forms">forms</a>
 </form>
 </body>
 </html>

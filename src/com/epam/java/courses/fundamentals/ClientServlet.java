@@ -4,9 +4,6 @@ import com.epam.java.courses.fundamentals.dto.Client;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +14,8 @@ import java.sql.*;
 import java.util.Collection;
 
 @WebServlet("/clients")
-public class HelloWorldServlet2 extends HttpServlet {
-
-    private static final String GET_ALL_USERS = "SELECT * FROM Client";//todo
+public class ClientServlet extends HttpServlet {
+    private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";//todo
     private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
 
     Connection con;//mk
@@ -40,20 +36,18 @@ public class HelloWorldServlet2 extends HttpServlet {
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);;
-            System.out.println("Connection is established");
 
             statement = con.createStatement();
-
+            //statement.execute("INSERT INTO Resort VALUES(null, 'AstoriaResort', 'Чехия', 'Карловы Вары');");
 
             /////////////
-            ResultSet resultSet = statement.executeQuery(GET_ALL_USERS);
+            ResultSet resultSet = statement.executeQuery(GET_ALL_CLIENTS);
+            Collection<Client> clients = Utils.getEntities(resultSet, Client.class);
+            req.setAttribute("clients", clients);
 
-                Collection<Client> clients = Utils.getEntities(resultSet, Client.class);
-                req.setAttribute("clients", clients);
-
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
-                requestDispatcher.forward(req, resp);
-            ////////////////
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
+            requestDispatcher.forward(req, resp);
+            ////////////////*/
 
         } catch (ClassNotFoundException e) {
             System.out.println("Class Not Found.");//todo
