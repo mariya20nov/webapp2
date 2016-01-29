@@ -38,16 +38,13 @@ public class ClientServlet extends HttpServlet {
             con = DriverManager.getConnection(url, usr, password);;
 
             statement = con.createStatement();
-            //statement.execute("INSERT INTO Resort VALUES(null, 'AstoriaResort', 'Чехия', 'Карловы Вары');");
 
-            /////////////
             ResultSet resultSet = statement.executeQuery(GET_ALL_CLIENTS);
             Collection<Client> clients = Utils.getEntities(resultSet, Client.class);
             req.setAttribute("clients", clients);
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
             requestDispatcher.forward(req, resp);
-            ////////////////*/
 
         } catch (ClassNotFoundException e) {
             System.out.println("Class Not Found.");//todo

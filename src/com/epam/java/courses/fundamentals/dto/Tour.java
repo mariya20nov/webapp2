@@ -37,8 +37,8 @@ public class Tour {
         return resort_id;
     }
 
-    public int getTourId() {
-        return tour_id;
+    public int getTypeId() {
+        return type_id;
     }
 
     public Timestamp getDateBeg() {

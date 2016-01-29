@@ -33,8 +33,6 @@ public class HelloWorldServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-      //  RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/TourOperator.jsp");
        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/touroperator");
         requestDispatcher.forward(req, resp);
     }

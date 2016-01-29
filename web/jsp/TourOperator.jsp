@@ -15,7 +15,7 @@
 <form>
     <a href="clients">clients</a>
     <a href="tours">tours</a>
-    <a href="/resorts">resorts</a>
+    <a href="resorts">resorts</a>
     <a href="forms">forms</a>
 </form>
 </body>

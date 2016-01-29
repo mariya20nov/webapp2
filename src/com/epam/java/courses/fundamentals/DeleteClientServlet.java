@@ -1,7 +1,6 @@
 package com.epam.java.courses.fundamentals;
 
 import com.epam.java.courses.fundamentals.dto.Client;
-import com.epam.java.courses.fundamentals.dto.Resort;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,14 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Collection;
 
-@WebServlet("/touroperator")
-public class TourOperatorServlet extends HttpServlet {
-    private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
-
+@WebServlet("/deleteclient")
+public class DeleteClientServlet extends HttpServlet {
+    //todo считывать
+    /*private static final String DELETE_CLIENT = "DELETE FROM Client WHERE client_id=2;";
+    private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";//todo*/
     Connection con;//mk
 
     @Override
@@ -31,11 +31,15 @@ public class TourOperatorServlet extends HttpServlet {
         String usr = "root";
         String password = "mkpwd";
 
+        req.setCharacterEncoding("UTF-8");
+
         try {
-           Class.forName(driver);
+            Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);;
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/TourOperator.jsp");
+            Client.deleteClient(con, Integer.parseInt(req.getParameter("clientid")));
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/clients");
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
@@ -53,24 +57,6 @@ public class TourOperatorServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-        }
-
-    }
-
-    private Connection getConnection(HttpServletRequest req) {
-        Connection connection = (Connection) req.getAttribute("connection");
-        return (connection == null) ? getConnection(): connection;
-    }
-
-//    private Connection getConnection() {
-//        return Pool.getInstance().getConnection();
-//    }
-
-    private Connection getConnection() {
-        try {
-            return Utils.localJndiSearch(JDBC_TEST_DB, DataSource.class).getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 }

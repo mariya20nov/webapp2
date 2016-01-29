@@ -33,5 +33,13 @@ public class Form {
         return tour_id;
     }
 
+    public Timestamp getDate(){
+        return date;
+    }
+
+    public int getDiscount(){
+        return discount;
+    }
+
     //todo change delete
 }

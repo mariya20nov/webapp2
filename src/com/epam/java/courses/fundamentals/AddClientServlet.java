@@ -1,7 +1,7 @@
 package com.epam.java.courses.fundamentals;
 
+
 import com.epam.java.courses.fundamentals.dto.Client;
-import com.epam.java.courses.fundamentals.dto.Resort;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,14 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet("/touroperator")
-public class TourOperatorServlet extends HttpServlet {
-    private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
-
+@WebServlet("/addclient")
+public class AddClientServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -31,11 +28,19 @@ public class TourOperatorServlet extends HttpServlet {
         String usr = "root";
         String password = "mkpwd";
 
-        try {
-           Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);;
+        req.setCharacterEncoding("UTF-8");
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/TourOperator.jsp");
+        Client client = new Client(req.getParameter("clientname"), req.getParameter("clientmiddlename"),
+                req.getParameter("clientsurname"), req.getParameter("clientpassport"));
+        System.out.println("client surname:" + client.getSurname());
+
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, usr, password);
+
+            Client.addClient(con, client.getName(), client.getMiddleName(), client.getSurname(), client.getPassport());
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/clients");
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
@@ -54,23 +59,5 @@ public class TourOperatorServlet extends HttpServlet {
             }
 
         }
+}}
 
-    }
-
-    private Connection getConnection(HttpServletRequest req) {
-        Connection connection = (Connection) req.getAttribute("connection");
-        return (connection == null) ? getConnection(): connection;
-    }
-
-//    private Connection getConnection() {
-//        return Pool.getInstance().getConnection();
-//    }
-
-    private Connection getConnection() {
-        try {
-            return Utils.localJndiSearch(JDBC_TEST_DB, DataSource.class).getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-}

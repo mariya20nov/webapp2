@@ -1,7 +1,7 @@
 package com.epam.java.courses.fundamentals;
 
-import com.epam.java.courses.fundamentals.dto.Client;
-import com.epam.java.courses.fundamentals.dto.Resort;
+import com.epam.java.courses.fundamentals.Utils;
+import com.epam.java.courses.fundamentals.dto.Form;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Collection;
 
-@WebServlet("/touroperator")
-public class TourOperatorServlet extends HttpServlet {
+@WebServlet("/forms")
+public class FormServlet extends HttpServlet {
+    private static final String GET_ALL_FORMS = "SELECT * FROM Form;";//todo
     private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
 
     Connection con;//mk
@@ -30,13 +32,30 @@ public class TourOperatorServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
         String usr = "root";
         String password = "mkpwd";
+        Statement statement;
 
         try {
-           Class.forName(driver);
+            Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);;
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/TourOperator.jsp");
+            statement = con.createStatement();
+            //statement.execute("INSERT INTO Resort VALUES(null, 'AstoriaResort', 'Чехия', 'Карловы Вары');");
+
+            /////////////
+            ResultSet resultSet = statement.executeQuery(GET_ALL_FORMS);
+            Collection<Form> forms = Utils.getEntities(resultSet, Form.class);
+            req.setAttribute("forms", forms);
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/forms.jsp");
             requestDispatcher.forward(req, resp);
+
+           /* resultSet = statement.executeQuery(GET_ALL_CLIENTS);
+            Collection<Client> clients = Utils.getEntities(resultSet, Client.class);
+            req.setAttribute("clients", clients);
+
+            requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
+            requestDispatcher.forward(req, resp);
+            ////////////////*/
 
         } catch (ClassNotFoundException e) {
             System.out.println("Class Not Found.");//todo

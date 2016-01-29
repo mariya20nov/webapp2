@@ -1,7 +1,7 @@
 package com.epam.java.courses.fundamentals;
 
-import com.epam.java.courses.fundamentals.dto.Client;
 import com.epam.java.courses.fundamentals.dto.Resort;
+import com.epam.java.courses.fundamentals.dto.Tour;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Collection;
 
-@WebServlet("/touroperator")
-public class TourOperatorServlet extends HttpServlet {
+/**
+ * Created by maria on 27.01.16.
+ */
+@WebServlet("/tours")
+public class TourServlet extends HttpServlet {
+    private static final String GET_ALL_TOURS = "SELECT * FROM Tour;";//todo
     private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
 
     Connection con;//mk
@@ -30,12 +35,21 @@ public class TourOperatorServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
         String usr = "root";
         String password = "mkpwd";
+        Statement statement;
 
         try {
-           Class.forName(driver);
+            Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);;
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/TourOperator.jsp");
+            statement = con.createStatement();
+            //statement.execute("INSERT INTO Resort VALUES(null, 'AstoriaResort', 'Чехия', 'Карловы Вары');");
+
+            /////////////
+            ResultSet resultSet = statement.executeQuery(GET_ALL_TOURS);
+            Collection<Tour> tours = Utils.getEntities(resultSet, Tour.class);
+            req.setAttribute("tours", tours);
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/tours.jsp");
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
