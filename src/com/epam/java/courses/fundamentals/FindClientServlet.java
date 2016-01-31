@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Collection;
 
 @WebServlet("/findclient")
 public class FindClientServlet extends HttpServlet {
@@ -37,11 +36,18 @@ public class FindClientServlet extends HttpServlet {
 
             //todo проверка Integer.parseInt(req.getParameter("clientid"))
 
-            Collection<Client> clients = Client.findClient(con, req.getParameter("surname"));
+            /*Collection<Client> clients = Client.findClient(con, req.getParameter("surname"));
             req.setAttribute("clients", clients);
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
-            requestDispatcher.forward(req, resp);
+            req.setAttribute("sqlstr", "SELECT * FROM Client where surname='Петров';");
+
+            //RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/findclient.jsp");
+            requestDispatcher.forward(req, resp);*/
+
+            req.setAttribute("sqlstr", "'"+req.getParameter("surname")+"'");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/findclient2.jsp");
+            dispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
             System.out.println("Class Not Found.");//todo

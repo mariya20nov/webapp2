@@ -43,6 +43,7 @@ public class ClientServlet extends HttpServlet {
             Collection<Client> clients = Utils.getEntities(resultSet, Client.class);
             req.setAttribute("clients", clients);
 
+
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
             requestDispatcher.forward(req, resp);
 

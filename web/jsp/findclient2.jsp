@@ -12,31 +12,39 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Client;
+    select * from Client WHERE surname=${sqlstr};
 </sql:query>
+
 
 <html>
 <head>
-    <title>Hello, World!</title>
+    <title>Find client</title>
 </head>
 <body>
+
 <table>
     <thead>
     <tr>
         <th>client_id</th>
-        <th>name</th>
         <th>surname</th>
+        <th>name</th>
+        <th>middle_name</th>
+        <th>passport</th>
+        <th>tour count</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="row" items="${db.rows}">
         <tr>
             <td> ${row.client_id} </td>
-            <td> ${row.name} </td>
             <td> ${row.surname} </td>
+            <td> ${row.middle_name} </td>
+            <td> ${row.passport} </td>
+            <td> ${row.tour_count} </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+<a href="clients">reset</a>
 </body>
 </html>
