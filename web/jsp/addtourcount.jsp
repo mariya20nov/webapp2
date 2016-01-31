@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<form action="/changeclient" method=post>
+<form action="/addtourcount" method=post>
     <td valign=top>
         Client_id to change
         <input type="text" name="clientid" value="" size=15 maxlength=20></td>
@@ -17,25 +17,11 @@
 
         <tr bgcolor="#c8d8f8">
             <td valign=top>
-                Name
+                Tour count
 
-                <input type="text" name="clientname" value="" size=15 maxlength=20></td>
-            <td valign=top>
-                Middle name
-
-                <input type="text" name="clientmiddlename" value="" size=15 maxlength=20></td>
+                <input type="text" name="tourcounttoadd" value="" size=15 maxlength=20></td>
         </tr>
         <td valign=top>
-        <td  valign=top>
-            Surname
-
-            <input type="text" name="clientsurname" value="" size=15 maxlength=20></td>
-
-        <td valign=top>
-            Passport
-
-            <input type="text" name="clientpassport" value="" size=25  maxlength=125>
-        </td>
 
         <tr bgcolor="#c8d8f8">
             <td  align=center colspan=2>

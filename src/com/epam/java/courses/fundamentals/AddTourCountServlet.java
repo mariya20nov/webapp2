@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet("/changeclient")
-public class ChangeClientServlet extends HttpServlet {
+@WebServlet("/addtourcount")
+public class AddTourCountServlet extends HttpServlet {
     //private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";
     //todo считывать
     //private static final String INSERT_NEW_CLIENT = "INSERT INTO Client(name, middle_name, surname, passport, tour_count) VALUES('Пётр','Петрович','Петров','4013234567',0);";
-    private static String CHANGE_CLIENT = "INSERT FROM Client(name, middle_name, surname, passport, tour_count) VALUES(";
+    //private static String CHANGE_CLIENT = "INSERT FROM Client(name, middle_name, surname, passport, tour_count) VALUES(";
     Connection con;//mk
 
     @Override
@@ -39,9 +39,9 @@ public class ChangeClientServlet extends HttpServlet {
             con = DriverManager.getConnection(url, usr, password);
 
             //todo проверка Integer.parseInt(req.getParameter("clientid"))
-            //System.out.println(req.getParameter(""));
-            Client.changeClient(con, new Integer(req.getParameter("clientid")), req.getParameter("clientname"),
-                    req.getParameter("clientmiddlename"), req.getParameter("clientsurname"), req.getParameter("clientpassport"));
+            //System.out.println(req.getParameter("clientid"));
+            //System.out.println(req.getParameter("tourcounttoadd"));
+            Client.addTourCount(con, new Integer(req.getParameter("clientid")),  new Integer(req.getParameter("tourcounttoadd")));
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/clients");
             requestDispatcher.forward(req, resp);

@@ -37,9 +37,9 @@
 <a href="/jsp/addclient.jsp">add client</a>
 <a href="/jsp/deleteclient.jsp">delete client</a>
 <a href="/jsp/changeclient.jsp">change client</a>
-<a href="/jsp/addtourcount.jsp">change client</a>
-<a href="/jsp/findclient.jsp">sort client</a>
-<a href="/jsp/sortclientsID.jsp">sort client</a>
-<a href="/jsp/sortclientsSurname.jsp">sort client</a>
+<a href="/jsp/addtourcount.jsp">add tour count</a>
+<a href="/jsp/findclient.jsp">find client</a>
+<a href="/jsp/sortclientsID.jsp">sort client by ID</a>
+<a href="/jsp/sortclientsSurname.jsp">sort client by surname</a>
 </body>
 </html>

@@ -1,9 +1,6 @@
 package com.epam.java.courses.fundamentals.dto;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Client {
 
@@ -110,12 +107,12 @@ public class Client {
 
     }
 
-    public static void changeClient(Connection con, String client_id, String name, String middle_name, String surname, String passport) {
+    public static void changeClient(Connection con, int client_id, String name, String middle_name, String surname, String passport) {
         int i = 0;
 
         //todo проверка id int
 
-        String sql = "INSERT Client SET ";
+        String sql = "UPDATE Client SET ";
 
         if (!name.equals("")) {
             sql += " name=?";
@@ -131,12 +128,12 @@ public class Client {
             sql += " surname=?";
             i++;
         }
-        if (!passport.equals("")) {
+       if (!passport.equals("")) {
             if(i!=0) sql += ",";
             sql += " passport=?";
             i++;
         }
-        sql += " WHERE client_id=" + client_id + ";";
+        sql += " WHERE client_id=?;";// + client_id + ";";
         System.out.println(sql);
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -153,13 +150,46 @@ public class Client {
                 ps.setString(k, surname);
                 k++;
             }
-            if (!passport.equals("")) {
+           if (!passport.equals("")) {
                 ps.setString(k, passport);
                 k++;
             }
+            ps.setInt(k, client_id);
             ps.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();
+        }
+
+    }
+
+    public static void addTourCount(Connection con, int client_id, int number) {
+        //todo проверка id int
+        int tourCount;
+
+        String sql = "SELECT * FROM Client where client_id=" + client_id + ";";
+
+        try( Statement statement = con.createStatement()){
+
+            //todo нашел ли и одно ли
+            ResultSet set = statement.executeQuery(sql);
+            set.next();
+            {
+                //System.out.println("tour count: " + set.getInt("tour_count"));
+                tourCount = set.getInt("tour_count") + number;
+            }
+
+                sql = "UPDATE Client SET tour_count=? WHERE client_id=?;";
+                System.out.println(sql);
+
+                try (PreparedStatement ps = con.prepareStatement(sql))  {
+                    ps.setInt(1, tourCount);
+                    ps.setInt(2, client_id);
+                    ps.executeUpdate();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }catch(SQLException e) {
+                    e.printStackTrace();
         }
 
     }
