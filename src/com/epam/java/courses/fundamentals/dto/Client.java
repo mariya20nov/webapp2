@@ -1,6 +1,10 @@
 package com.epam.java.courses.fundamentals.dto;
 
+import com.epam.java.courses.fundamentals.Utils;
+
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
+import java.util.Collection;
 
 public class Client {
 
@@ -192,6 +196,40 @@ public class Client {
                     e.printStackTrace();
         }
 
+    }
+
+    public static Collection<Client> findClient(Connection con, String surname) {
+
+        String sql = "SELECT * FROM Client where surname='" + surname + "';";
+
+        try( Statement statement = con.createStatement()){
+
+            //todo нашел ли
+            ResultSet set = statement.executeQuery(sql);
+            Collection<Client> clients = Utils.getEntities(set, Client.class);
+            return clients;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null; //todo ?
+    }
+
+    public static Collection<Client> sortClients(Connection con, String sortBy) {
+
+        String sql = "SELECT * FROM Client ORDER BY " + sortBy + ";";
+
+        try( Statement statement = con.createStatement()){
+
+            //todo нашел ли
+            ResultSet set = statement.executeQuery(sql);
+            Collection<Client> clients = Utils.getEntities(set, Client.class);
+            return clients;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null; //todo ?
     }
 
 
