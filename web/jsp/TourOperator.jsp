@@ -13,7 +13,6 @@
 </head>
 <body>
 <form>
-    <a href="jsp/clients2.jsp">clients2</a>
     <a href="clients">clients</a>
     <a href="tours">tours</a>
     <a href="resorts">resorts</a>

@@ -50,6 +50,6 @@
 <a href="/jsp/changeclient.jsp">change client</a>
 <a href="/jsp/addtourcount.jsp">add tour count</a>
 <a href="/jsp/findclient.jsp">find client</a>
-<a href="/jsp/sortclients.jsp">sort client</a>
+<a href="/jsp/sortclients.jsp">sort by surname</a>
 </body>
 </html>

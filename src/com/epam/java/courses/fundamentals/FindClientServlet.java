@@ -34,17 +34,6 @@ public class FindClientServlet extends HttpServlet {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);
 
-            //todo проверка Integer.parseInt(req.getParameter("clientid"))
-
-            /*Collection<Client> clients = Client.findClient(con, req.getParameter("surname"));
-            req.setAttribute("clients", clients);
-
-            req.setAttribute("sqlstr", "SELECT * FROM Client where surname='Петров';");
-
-            //RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/findclient.jsp");
-            requestDispatcher.forward(req, resp);*/
-
             req.setAttribute("sqlstr", "'"+req.getParameter("surname")+"'");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/findclient2.jsp");
             dispatcher.forward(req, resp);
