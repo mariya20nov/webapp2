@@ -1,6 +1,7 @@
 package com.epam.java.courses.fundamentals;
 
 import com.epam.java.courses.fundamentals.dto.Client;
+import com.epam.java.courses.fundamentals.dto.Resort;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -10,14 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
-import java.util.Collection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-@WebServlet("/deleteclient")
-public class DeleteClientServlet extends HttpServlet {
-    //todo считывать
-    /*private static final String DELETE_CLIENT = "DELETE FROM Client WHERE client_id=2;";
-    private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";//todo*/
+/**
+ * Created by maria on 01.02.16.
+ */
+@WebServlet("/addresort")
+public class AddResortServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -32,17 +34,17 @@ public class DeleteClientServlet extends HttpServlet {
         String usr = "root";
         String password = "mkpwd";
 
-        req.setCharacterEncoding("UTF-8");
+        Logger4j.log = Logger.getLogger(AddResortServlet.class.getName());
 
-        Logger4j.log = Logger.getLogger(DeleteClientServlet.class.getName());
+        req.setCharacterEncoding("UTF-8");
 
         try {
             Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);;
+            con = DriverManager.getConnection(url, usr, password);
 
-            Client.deleteClient(con, Integer.parseInt(req.getParameter("clientid")));
+            Resort.addResort(con, req.getParameter("name"), req.getParameter("country"), req.getParameter("location"));
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/clients.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/resorts.jsp");
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
@@ -54,7 +56,7 @@ public class DeleteClientServlet extends HttpServlet {
                 if (con != null) {
                     con.close();
                 }
-            } catch (Exception e) {;
+            } catch (Exception e) {
                 Logger4j.log.error("Closing connection exception. ", e);
             }
 

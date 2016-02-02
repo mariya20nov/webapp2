@@ -18,7 +18,13 @@ public class LoginServlet extends HttpServlet {
                 request.getParameter("j_password")
         );
 
+        if (request.getParameter("j_username").equals("tomcat")) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/main");
         requestDispatcher.forward(request, response);
+        }
+        else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/ordinaryclient.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 }

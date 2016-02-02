@@ -1,6 +1,5 @@
 package com.epam.java.courses.fundamentals;
 
-import com.epam.java.courses.fundamentals.dto.Client;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -10,14 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
-import java.util.Collection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-@WebServlet("/deleteclient")
-public class DeleteClientServlet extends HttpServlet {
-    //todo считывать
-    /*private static final String DELETE_CLIENT = "DELETE FROM Client WHERE client_id=2;";
-    private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";//todo*/
+/**
+ * Created by maria on 01.02.16.
+ */
+@WebServlet("/findresort")
+public class FindResortServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -34,16 +34,16 @@ public class DeleteClientServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
-        Logger4j.log = Logger.getLogger(DeleteClientServlet.class.getName());
+        Logger4j.log = Logger.getLogger(FindResortServlet.class.getName());
 
         try {
             Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);;
+            con = DriverManager.getConnection(url, usr, password);
 
-            Client.deleteClient(con, Integer.parseInt(req.getParameter("clientid")));
-
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/clients.jsp");
-            requestDispatcher.forward(req, resp);
+            req.setAttribute("sqlstr", "'"+req.getParameter("resortname")+"'");
+            System.out.println(req.getParameter("resortname"));
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/findresort2.jsp");
+            dispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
             Logger4j.log.error("Class.forName(driver) is not found. ", e);

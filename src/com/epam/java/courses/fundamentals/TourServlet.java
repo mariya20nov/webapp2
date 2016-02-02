@@ -2,6 +2,7 @@ package com.epam.java.courses.fundamentals;
 
 import com.epam.java.courses.fundamentals.dto.Resort;
 import com.epam.java.courses.fundamentals.dto.Tour;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,6 +38,8 @@ public class TourServlet extends HttpServlet {
         String password = "mkpwd";
         Statement statement;
 
+        Logger4j.log = Logger.getLogger(TourServlet.class.getName());
+
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);;
@@ -53,18 +56,16 @@ public class TourServlet extends HttpServlet {
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
-            System.out.println("Class Not Found.");//todo
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL Exception");//todo
-            e.printStackTrace();
+            Logger4j.log.error("Class.forName(driver) is not found. ", e);
+        } catch (Exception e) {
+            Logger4j.log.error("Connection to DB exception. ", e);
         } finally {
             try {
                 if (con != null) {
                     con.close();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (Exception e) {;
+                Logger4j.log.error("Closing connection exception. ", e);
             }
 
         }

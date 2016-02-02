@@ -2,6 +2,9 @@ package com.epam.java.courses.fundamentals;
 
 import com.epam.java.courses.fundamentals.dto.Client;
 import com.epam.java.courses.fundamentals.dto.Resort;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,6 +34,11 @@ public class TourOperatorServlet extends HttpServlet {
         String usr = "root";
         String password = "mkpwd";
 
+        String nameFile = "log4j.properties";
+        PropertyConfigurator.configure(nameFile);
+
+        Logger4j.log = Logger.getLogger(TourOperatorServlet.class.getName());
+
         try {
            Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);;
@@ -39,24 +47,24 @@ public class TourOperatorServlet extends HttpServlet {
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
-            System.out.println("Class Not Found.");//todo
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL Exception");//todo
-            e.printStackTrace();
+            Logger4j.log.error("Class.forName(driver) is not found. ", e);
+        } catch (Exception e) {
+            Logger4j.log.error("Connection to DB exception. ", e);
         } finally {
             try {
                 if (con != null) {
                     con.close();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (Exception e) {;
+                Logger4j.log.error("Closing connection exception. ", e);
             }
 
         }
 
     }
 
+
+//todo что это?!
     private Connection getConnection(HttpServletRequest req) {
         Connection connection = (Connection) req.getAttribute("connection");
         return (connection == null) ? getConnection(): connection;

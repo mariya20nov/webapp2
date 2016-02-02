@@ -12,39 +12,36 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Client WHERE surname=${sqlstr};
+    select * from Resort WHERE name=${sqlstr};
 </sql:query>
 
 
 <html>
 <head>
-    <title>Find client</title>
+    <title> </title>
 </head>
 <body>
 
 <table>
     <thead>
     <tr>
-        <th>client_id</th>
-        <th>surname</th>
+        <th>resort_id</th>
         <th>name</th>
-        <th>middle_name</th>
-        <th>passport</th>
-        <th>tour count</th>
+        <th>country</th>
+        <th>location</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="row" items="${db.rows}">
         <tr>
-            <td> ${row.client_id} </td>
-            <td> ${row.surname} </td>
-            <td> ${row.middle_name} </td>
-            <td> ${row.passport} </td>
-            <td> ${row.tour_count} </td>
+            <td> ${row.resort_id} </td>
+            <td> ${row.name} </td>
+            <td> ${row.country} </td>
+            <td> ${row.location} </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/clients.jsp">reset</a>
+<a href="/jsp/resorts.jsp">reset</a>
 </body>
 </html>

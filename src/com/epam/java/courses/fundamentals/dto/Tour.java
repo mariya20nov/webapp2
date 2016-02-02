@@ -1,5 +1,7 @@
 package com.epam.java.courses.fundamentals.dto;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 
 /**
@@ -54,4 +56,34 @@ public class Tour {
     }
 
     //todo change delete
+
+    public static void addTour(Connection con, int resort_id, int type_id, String name,
+                               Timestamp date_beg, Timestamp date_end, int cost) {
+        String sql = "INSERT INTO Tour(resort_id, type_id, name, date_beg, date_end, cost) VALUES(?,?,?,?,?,?)";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, resort_id);
+            ps.setInt(2, type_id);
+            ps.setString(3, name);
+            ps.setTimestamp(4, date_beg);
+            ps.setTimestamp(5, date_end);
+            ps.setInt(6, cost);
+            ps.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void deleteTour(Connection con, int tour_id) {
+        String sql = "DELETE FROM Tour WHERE tour_id=?;";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, tour_id);
+            ps.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }

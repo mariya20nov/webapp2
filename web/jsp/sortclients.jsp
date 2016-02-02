@@ -37,6 +37,7 @@
         <tr>
             <td> ${row.client_id} </td>
             <td> ${row.surname} </td>
+            <td> ${row.name} </td>
             <td> ${row.middle_name} </td>
             <td> ${row.passport} </td>
             <td> ${row.tour_count} </td>
@@ -44,7 +45,7 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="clients">reset</a>
+<a href="clients.jsp">reset</a>
 <a href="/jsp/addclient.jsp">add client</a>
 <a href="/jsp/deleteclient.jsp">delete client</a>
 <a href="/jsp/changeclient.jsp">change client</a>

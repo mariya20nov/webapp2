@@ -12,39 +12,40 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Client WHERE surname=${sqlstr};
+    ${sqlstr}
 </sql:query>
 
 
 <html>
 <head>
-    <title>Find client</title>
 </head>
 <body>
-
 <table>
     <thead>
     <tr>
-        <th>client_id</th>
-        <th>surname</th>
+        <th>tour id</th>
+        <th>resort_id</th>
+        <th>type_id</th>
         <th>name</th>
-        <th>middle_name</th>
-        <th>passport</th>
-        <th>tour count</th>
+        <th>date_beg</th>
+        <th>date_end</th>
+        <th>cost</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="row" items="${db.rows}">
         <tr>
-            <td> ${row.client_id} </td>
-            <td> ${row.surname} </td>
-            <td> ${row.middle_name} </td>
-            <td> ${row.passport} </td>
-            <td> ${row.tour_count} </td>
+            <td> ${row.tour_id} </td>
+            <td> ${row.resort_id} </td>
+            <td> ${row.type_id} </td>
+            <td> ${row.name} </td>
+            <td> ${row.date_beg} </td>
+            <td> ${row.date_end} </td>
+            <td> ${row.cost} </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/clients.jsp">reset</a>
+<a href="/jsp/ordinaryclient.jsp">reset</a>
 </body>
 </html>

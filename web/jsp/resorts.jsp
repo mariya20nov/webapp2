@@ -1,35 +1,52 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.Collection" %>
-<%@ page import="com.epam.java.courses.fundamentals.dto.Resort" %>
-<%
-    Collection<Resort> resorts = (Collection<Resort>) request.getAttribute("resorts");
-%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+
+<sql:setDataSource  var="con"   driver="com.mysql.jdbc.Driver"
+                    url="jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8"
+                    user="root"
+                    password="mkpwd"
+/>
+
+
+<sql:query var="db" dataSource="${con}">
+    select * from Resort;
+</sql:query>
+
+
 <html>
 <head>
     <title>Resorts</title>
 </head>
 <body>
-    <jsp:text>Resorts</jsp:text>
-    <table>
-        <thead>
+<table>
+    <thead>
+    <tr>
+        <th>resort id</th>
+        <th>name</th>
+        <th>country</th>
+        <th>location</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="row" items="${db.rows}">
         <tr>
-            <th>resort_id</th>
-            <th>name</th>
-            <th>country</th>
-            <th>location</th>
+            <td> ${row.resort_id} </td>
+            <td> ${row.name} </td>
+            <td> ${row.country} </td>
+            <td> ${row.location} </td>
         </tr>
-        </thead>
-        <tbody>
+    </c:forEach>
+    </tbody>
+</table>
+<a href="resorts.jsp">reset</a>
 
-        <% for (Resort resort:resorts) { %>
-        <tr>
-            <td><%=resort.getId()%></td>
-            <td><%=resort.getName()%></td>
-            <td><%=resort.getCountry()%></td>
-            <td><%=resort.getLocation()%></td>
-        </tr>
-        <% } %>
-        </tbody>
-    </table>
+<a href="/jsp/addresort.jsp">add resort</a>
+<a href="/jsp/deleteresort.jsp">delete resort</a>
+<a href="/jsp/findresort.jsp">find resort</a>
+
+<a href="/touroperator">touroperator</a>
 </body>
 </html>

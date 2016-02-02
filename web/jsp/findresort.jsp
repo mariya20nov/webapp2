@@ -12,47 +12,58 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Tour;
+    select * from Resort;
 </sql:query>
 
 
 <html>
 <head>
+    <title>Find resort</title>
 </head>
 <body>
+<form action="/findresort" method=post>
+    <table cellpadding=4 cellspacing=2 border=0>
+
+        <th bgcolor="#CCCCFF" colspan=2>
+            <font size=5>FIND RESORT</font>
+        </th>
+
+        <td  valign=top>
+            Name
+
+            <input type="text" name="resortname" value="" size=15 maxlength=20></td>
+
+
+        <tr bgcolor="#c8d8f8">
+            <td  align=center colspan=2>
+                <input type="submit" value="Submit"> <input type="reset"
+                                                            value="Reset">
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+
 <table>
     <thead>
     <tr>
-        <th>tour id</th>
         <th>resort_id</th>
-        <th>type_id</th>
         <th>name</th>
-        <th>date_beg</th>
-        <th>date_end</th>
-        <th>cost</th>
+        <th>country</th>
+        <th>location</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="row" items="${db.rows}">
         <tr>
-            <td> ${row.tour_id} </td>
             <td> ${row.resort_id} </td>
-            <td> ${row.type_id} </td>
             <td> ${row.name} </td>
-            <td> ${row.date_beg} </td>
-            <td> ${row.date_end} </td>
-            <td> ${row.cost} </td>
+            <td> ${row.country} </td>
+            <td> ${row.location} </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/tours.jsp">reset</a>
-
-<a href="/jsp/addtour.jsp">add tour</a>
-<a href="/jsp/deletetour.jsp">delete tour</a>
-<a href="/jsp/findtour.jsp">find tour</a>
-<a href="/jsp/hottour.jsp">mark as hot</a>
-
-<a href="/touroperator">touroperator</a>
 </body>
 </html>

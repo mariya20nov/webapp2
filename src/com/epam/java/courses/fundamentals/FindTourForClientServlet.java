@@ -1,5 +1,6 @@
 package com.epam.java.courses.fundamentals;
 
+
 import com.epam.java.courses.fundamentals.dto.Client;
 import org.apache.log4j.Logger;
 
@@ -11,13 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Collection;
 
-@WebServlet("/deleteclient")
-public class DeleteClientServlet extends HttpServlet {
-    //todo считывать
-    /*private static final String DELETE_CLIENT = "DELETE FROM Client WHERE client_id=2;";
-    private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";//todo*/
+@WebServlet("/ordinaryclient")
+public class FindTourForClientServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -34,16 +31,31 @@ public class DeleteClientServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
-        Logger4j.log = Logger.getLogger(DeleteClientServlet.class.getName());
+        Logger4j.log = Logger.getLogger(FindTourForClientServlet.class.getName());
 
         try {
             Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);;
+            con = DriverManager.getConnection(url, usr, password);
 
-            Client.deleteClient(con, Integer.parseInt(req.getParameter("clientid")));
+            //todo убрать Tour.*
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/clients.jsp");
-            requestDispatcher.forward(req, resp);
+            if(!req.getParameter("country").isEmpty() && !req.getParameter("type").isEmpty()) {
+                req.setAttribute("sqlstr", "SELECT Tour.* FROM Tour JOIN Type ON Tour.type_id=Type.type_id JOIN Resort ON Tour.resort_id=Resort.resort_id WHERE Resort.country='"
+                + req.getParameter("country") + "' AND Type.name=" + "'" + req.getParameter("type") + "';");
+            }
+            else if(!req.getParameter("country").isEmpty()) {
+                req.setAttribute("sqlstr", "SELECT Tour.* FROM (Tour JOIN Resort ON Tour.resort_id=Resort.resort_id) WHERE Resort.country="
+                        + "'" + req.getParameter("country") + "';");
+            }
+            else if (!req.getParameter("type").isEmpty()) {
+                req.setAttribute("sqlstr", "SELECT Tour.* FROM (Tour JOIN Type ON Tour.type_id=Type.type_id) WHERE Type.name="
+                        + "'" + req.getParameter("type") + "';");
+            }
+            else {
+                req.setAttribute("sqlstr", "SELECT * FROM Tour;");
+            }
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/ordinaryclient2.jsp");
+            dispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
             Logger4j.log.error("Class.forName(driver) is not found. ", e);
@@ -59,5 +71,5 @@ public class DeleteClientServlet extends HttpServlet {
             }
 
         }
-    }
-}
+    }}
+
