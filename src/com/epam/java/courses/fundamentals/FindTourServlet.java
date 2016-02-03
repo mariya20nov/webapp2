@@ -16,8 +16,8 @@ import java.nio.file.NoSuchFileException;
 import java.sql.*;
 import java.util.Properties;
 
-@WebServlet("/ordinaryclient")
-public class FindTourForClientServlet extends HttpServlet {
+@WebServlet("/findtour")
+public class FindTourServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -34,18 +34,6 @@ public class FindTourForClientServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
-        //загрузка проперти-файла для логера //todo проверить
-        Properties property = new Properties();
-        try(InputStream fis = TourOperatorServlet.class.getClassLoader().getResourceAsStream("log4j.properties")) {
-            property.load(fis);
-        } catch (NoSuchFileException e) {
-            System.err.println("Error: there is no properties-file!");
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.err.println("Problems with properties-file");
-            e.printStackTrace();
-        }
-
         Logger4j.log = Logger.getLogger(FindTourForClientServlet.class.getName());
 
         try {
@@ -56,7 +44,7 @@ public class FindTourForClientServlet extends HttpServlet {
 
             if(!req.getParameter("country").isEmpty() && !req.getParameter("type").isEmpty()) {
                 req.setAttribute("sqlstr", "SELECT Tour.* FROM Tour JOIN Type ON Tour.type_id=Type.type_id JOIN Resort ON Tour.resort_id=Resort.resort_id WHERE Resort.country='"
-                + req.getParameter("country") + "' AND Type.name=" + "'" + req.getParameter("type") + "';");
+                        + req.getParameter("country") + "' AND Type.name=" + "'" + req.getParameter("type") + "';");
             }
             else if(!req.getParameter("country").isEmpty()) {
                 req.setAttribute("sqlstr", "SELECT Tour.* FROM (Tour JOIN Resort ON Tour.resort_id=Resort.resort_id) WHERE Resort.country="
@@ -69,7 +57,7 @@ public class FindTourForClientServlet extends HttpServlet {
             else {
                 req.setAttribute("sqlstr", "SELECT * FROM Tour;");
             }
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/ordinaryclient2.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/findtour2.jsp");
             dispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {

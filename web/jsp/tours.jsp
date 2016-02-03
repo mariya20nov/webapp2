@@ -48,10 +48,10 @@
 </table>
 <a href="/jsp/tours.jsp">reset</a>
 
-<a href="/jsp/addtour.jsp">add tour</a>
+<a href="/listofresorts">add tour</a>
 <a href="/jsp/deletetour.jsp">delete tour</a>
 <a href="/jsp/findtour.jsp">find tour</a>
-<a href="/jsp/hottour.jsp">mark as hot</a>
+<a href="/jsp/changetour.jsp">change cost</a>
 
 <a href="/touroperator">touroperator</a>
 </body>

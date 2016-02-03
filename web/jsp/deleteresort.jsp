@@ -1,11 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: maria
-  Date: 01.02.16
-  Time: 16:36
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+
+<sql:setDataSource  var="con"   driver="com.mysql.jdbc.Driver"
+                    url="jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8"
+                    user="root"
+                    password="mkpwd"
+/>
+
+<sql:query var="db" dataSource="${con}">
+    select * from Resort;
+</sql:query>
+
 <html>
 <head>
     <title>Title</title>
@@ -15,7 +23,11 @@
     <td valign=top>
         Resort id
 
-        <input type="text" name="resortid" value="" size=15 maxlength=20></td>
+        <select name="resortid">
+            <c:forEach var="row" items="${db.rows}">
+                <option value=${row.resort_id}>${row.name}</option>
+            </c:forEach>
+        </select>
 
     <tr bgcolor="#c8d8f8">
         <td  align=center colspan=2>

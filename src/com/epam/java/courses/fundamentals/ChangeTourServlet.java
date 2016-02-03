@@ -1,6 +1,7 @@
 package com.epam.java.courses.fundamentals;
 
-import com.epam.java.courses.fundamentals.dto.Resort;
+
+import com.epam.java.courses.fundamentals.dto.Client;
 import com.epam.java.courses.fundamentals.dto.Tour;
 import org.apache.log4j.Logger;
 
@@ -12,14 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
-/**
- * Created by maria on 01.02.16.
- */
-@WebServlet("/addtour")
-public class AddTourServlet extends HttpServlet {
+@WebServlet("/changetour")
+public class ChangeTourServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -36,36 +32,32 @@ public class AddTourServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
-        Logger4j.log = Logger.getLogger(AddTourServlet.class.getName());
+        Logger4j.log = Logger.getLogger(ChangeClientServlet.class.getName());
 
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);
 
-            //todo обработка дня месяца (28-февраль, 30 или 31)
-            //todo проверка, чтобы дата конца была больше даты начала тура
+            //todo проверка Integer.parseInt(req.getParameter("clientid"))
+            //System.out.println(req.getParameter(""));
+            Tour.changeTour(con, new Integer(req.getParameter("tourid")), new Integer(req.getParameter("cost")));
 
-            //todo нормально выбирать даты и курорты
-            Tour.addTour(con, new Integer(req.getParameter("resortid")), new Integer(req.getParameter("typeid")), req.getParameter("name"),
-                    new Timestamp(new Integer(req.getParameter("begyear")), new Integer(req.getParameter("begmonth")), new Integer(req.getParameter("begday")), 11, 0, 0, 0),
-                    new Timestamp(new Integer(req.getParameter("endyear")), new Integer(req.getParameter("endmonth")), new Integer(req.getParameter("endday")), 11, 0, 0, 0), new Integer(req.getParameter("cost")));
-
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/tours.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/tours");
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
             Logger4j.log.error("Class.forName(driver) is not found. ", e);
         } catch (Exception e) {
-            Logger4j.log.error("Connection to DB exception. ", e);;
+            Logger4j.log.error("Connection to DB exception. ", e);
         } finally {
             try {
                 if (con != null) {
                     con.close();
                 }
             } catch (Exception e) {
-                Logger4j.log.error("Closing connection exception. ", e);;
+                Logger4j.log.error("Closing connection exception. ", e);
             }
 
         }
-    }
-}
+    }}
+

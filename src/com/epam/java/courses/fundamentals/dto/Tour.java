@@ -86,4 +86,21 @@ public class Tour {
         }
 
     }
+
+    public static void changeTour(Connection con, int tour_id, int cost) {
+        int i = 0;
+
+        //todo проверка id int cost
+
+        String sql = "UPDATE Tour SET cost=? WHERE tour_id=?;";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, cost);
+            ps.setInt(2, tour_id);
+            ps.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }

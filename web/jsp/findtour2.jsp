@@ -12,7 +12,7 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Form;
+    ${sqlstr}
 </sql:query>
 
 
@@ -23,32 +23,29 @@
 <table>
     <thead>
     <tr>
-        <th>form_id</th>
-        <th>client_id</th>
-        <th>tour_id</th>
-        <th>date</th>
-        <th>discount</th>
+        <th>tour id</th>
+        <th>resort_id</th>
+        <th>type_id</th>
+        <th>name</th>
+        <th>date_beg</th>
+        <th>date_end</th>
+        <th>cost</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="row" items="${db.rows}">
         <tr>
-            <td> ${row.form_id} </td>
-            <td> ${row.client_id} </td>
             <td> ${row.tour_id} </td>
-            <td> ${row.date} </td>
-            <td> ${row.discount} </td>
+            <td> ${row.resort_id} </td>
+            <td> ${row.type_id} </td>
+            <td> ${row.name} </td>
+            <td> ${row.date_beg} </td>
+            <td> ${row.date_end} </td>
+            <td> ${row.cost} </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/forms.jsp">reset</a>
-
-<a href="/listofforms">add form</a>
-<a href="/jsp/deleteform.jsp">delete form</a>
-<a href="/jsp/findform.jsp">find form</a>
-
-<a href="/touroperator">touroperator</a>
+<a href="/jsp/findtour.jsp">reset</a>
 </body>
 </html>
-

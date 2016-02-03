@@ -18,8 +18,8 @@ import java.util.Collection;
 /**
  * Created by maria on 01.02.16.
  */
-@WebServlet("/addtour")
-public class AddTourServlet extends HttpServlet {
+@WebServlet("/listofresorts")
+public class ListOfResortsToTourServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -33,6 +33,7 @@ public class AddTourServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
         String usr = "root";
         String password = "mkpwd";
+        Statement statement;
 
         req.setCharacterEncoding("UTF-8");
 
@@ -42,15 +43,17 @@ public class AddTourServlet extends HttpServlet {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);
 
-            //todo обработка дня месяца (28-февраль, 30 или 31)
-            //todo проверка, чтобы дата конца была больше даты начала тура
+            statement = con.createStatement();
 
-            //todo нормально выбирать даты и курорты
-            Tour.addTour(con, new Integer(req.getParameter("resortid")), new Integer(req.getParameter("typeid")), req.getParameter("name"),
-                    new Timestamp(new Integer(req.getParameter("begyear")), new Integer(req.getParameter("begmonth")), new Integer(req.getParameter("begday")), 11, 0, 0, 0),
-                    new Timestamp(new Integer(req.getParameter("endyear")), new Integer(req.getParameter("endmonth")), new Integer(req.getParameter("endday")), 11, 0, 0, 0), new Integer(req.getParameter("cost")));
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM Resort;");
+            ArrayList<String> arrayList = new ArrayList<String>();
+            while (resultSet.next()) {
+                arrayList.add(resultSet.getString("resort_id"));
+            }
+            Collection<String> resorts = arrayList;
+            req.setAttribute("resorts", resorts);
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/tours.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/addtour.jsp");
             requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {

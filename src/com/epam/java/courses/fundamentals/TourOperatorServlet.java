@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.NoSuchFileException;
 import java.sql.*;
+import java.util.Properties;
 
 @WebServlet("/touroperator")
 public class TourOperatorServlet extends HttpServlet {
@@ -34,8 +37,17 @@ public class TourOperatorServlet extends HttpServlet {
         String usr = "root";
         String password = "mkpwd";
 
-        String nameFile = "log4j.properties";
-        PropertyConfigurator.configure(nameFile);
+        //загрузка проперти-файла для логера
+        Properties property = new Properties();
+        try(InputStream fis = TourOperatorServlet.class.getClassLoader().getResourceAsStream("log4j.properties")) {
+            property.load(fis);
+        } catch (NoSuchFileException e) {
+            System.err.println("Error: there is no properties-file!");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Problems with properties-file");
+            e.printStackTrace();
+        }
 
         Logger4j.log = Logger.getLogger(TourOperatorServlet.class.getName());
 

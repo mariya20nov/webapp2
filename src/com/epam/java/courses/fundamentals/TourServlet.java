@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -20,7 +21,6 @@ import java.util.Collection;
  */
 @WebServlet("/tours")
 public class TourServlet extends HttpServlet {
-    private static final String GET_ALL_TOURS = "SELECT * FROM Tour;";//todo
     private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
 
     Connection con;//mk
@@ -36,21 +36,12 @@ public class TourServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
         String usr = "root";
         String password = "mkpwd";
-        Statement statement;
 
         Logger4j.log = Logger.getLogger(TourServlet.class.getName());
 
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);;
-
-            statement = con.createStatement();
-            //statement.execute("INSERT INTO Resort VALUES(null, 'AstoriaResort', 'Чехия', 'Карловы Вары');");
-
-            /////////////
-            ResultSet resultSet = statement.executeQuery(GET_ALL_TOURS);
-            Collection<Tour> tours = Utils.getEntities(resultSet, Tour.class);
-            req.setAttribute("tours", tours);
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/tours.jsp");
             requestDispatcher.forward(req, resp);

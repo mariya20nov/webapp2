@@ -11,21 +11,21 @@
 />
 
 <sql:query var="db" dataSource="${con}">
-    select * from Client;
+    select * from Tour;
 </sql:query>
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>
 </head>
 <body>
-<form action="/deleteclient" method=post>
+<form action="/deletetour" method=post>
     <td valign=top>
-        Client id
+        Tour
 
-        <select name="clientid">
+        <select name="tourid">
             <c:forEach var="row" items="${db.rows}">
-                <option value=${row.client_id}>${row.surname} ${row.name} ${row.middle_name}</option>
+                <option value=${row.tour_id}>${row.name}</option>
             </c:forEach>
         </select>
 
@@ -35,6 +35,6 @@
                                                         value="Reset">
         </td>
     </tr>
-    </form>
+</form>
 </body>
 </html>
