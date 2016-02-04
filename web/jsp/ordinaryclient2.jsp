@@ -47,5 +47,6 @@
     </tbody>
 </table>
 <a href="/jsp/ordinaryclient.jsp">reset</a>
+<a href="/logout">sign out</a>
 </body>
 </html>

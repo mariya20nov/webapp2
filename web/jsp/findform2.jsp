@@ -10,32 +10,39 @@
                     password="mkpwd"
 />
 
+
 <sql:query var="db" dataSource="${con}">
-    select * from Resort;
+    ${sqlstr}
 </sql:query>
+
 
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
-<form action="/deleteresort" method=post>
-    <td valign=top>
-        Resort id
-
-        <select name="resortid">
-            <c:forEach var="row" items="${db.rows}">
-                <option value=${row.resort_id}>${row.name}</option>
-            </c:forEach>
-        </select>
-
-    <tr bgcolor="#c8d8f8">
-        <td  align=center colspan=2>
-            <input type="submit" value="Submit"> <input type="reset"
-                                                        value="Reset">
-        </td>
+<table>
+    <thead>
+    <tr>
+        <th>form id</th>
+        <th>client_id</th>
+        <th>tour id</th>
+        <th>date</th>
+        <th>discount</th>
     </tr>
-</form>
+    </thead>
+    <tbody>
+    <c:forEach var="row" items="${db.rows}">
+        <tr>
+            <td> ${row.form_id} </td>
+            <td> ${row.client_id} </td>
+            <td> ${row.tour_id} </td>
+            <td> ${row.date} </td>
+            <td> ${row.discount} </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+<a href="/jsp/findform.jsp">reset</a>
 <a href="/logout">sign out</a>
 </body>
 </html>

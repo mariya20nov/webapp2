@@ -6,5 +6,5 @@ package com.epam.java.courses.fundamentals;
 import org.apache.log4j.Logger;
 
 public class Logger4j {
-    static Logger log = Logger.getLogger(Logger4j.class.getName());
+    public static Logger log = Logger.getLogger(Logger4j.class.getName());
 }

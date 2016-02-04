@@ -11,7 +11,7 @@
 />
 
 <sql:query var="db" dataSource="${con}">
-    select * from Resort;
+    select * from Tour;
 </sql:query>
 
 <html>
@@ -19,22 +19,22 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/deleteresort" method=post>
+<form action="/hottour" method=post>
     <td valign=top>
-        Resort id
+        Tour
 
-        <select name="resortid">
+        <select name="tourid">
             <c:forEach var="row" items="${db.rows}">
-                <option value=${row.resort_id}>${row.name}</option>
+                <option value=${row.tour_id}>${row.name}</option>
             </c:forEach>
         </select>
 
-    <tr bgcolor="#c8d8f8">
-        <td  align=center colspan=2>
-            <input type="submit" value="Submit"> <input type="reset"
-                                                        value="Reset">
-        </td>
-    </tr>
+        <tr bgcolor="#c8d8f8">
+            <td  align=center colspan=2>
+                <input type="submit" value="Mark as hot"> <input type="reset"
+                                                            value="Reset">
+            </td>
+        </tr>
 </form>
 <a href="/logout">sign out</a>
 </body>

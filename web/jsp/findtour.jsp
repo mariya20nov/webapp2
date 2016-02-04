@@ -30,6 +30,7 @@
         <th>date_beg</th>
         <th>date_end</th>
         <th>cost</th>
+        <th>hot</th>
     </tr>
     </thead>
     <tbody>
@@ -42,6 +43,7 @@
             <td> ${row.date_beg} </td>
             <td> ${row.date_end} </td>
             <td> ${row.cost} </td>
+            <td> ${row.hot} </td>
         </tr>
     </c:forEach>
     </tbody>
@@ -82,5 +84,6 @@
     </table>
 
 </form>
+<a href="/logout">sign out</a>
 </body>
 </html>

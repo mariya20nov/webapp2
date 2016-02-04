@@ -41,7 +41,7 @@ public class AddClientServlet extends HttpServlet {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);
 
-            Client.addClient(con, client.getName(), client.getMiddleName(), client.getSurname(), client.getPassport());
+            Client.addClient(con, client.getName(), client.getMiddleName(), client.getSurname(), client.getPassport(), "");
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/clients");
             requestDispatcher.forward(req, resp);

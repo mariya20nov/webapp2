@@ -10,8 +10,9 @@
                     password="mkpwd"
 />
 
+
 <sql:query var="db" dataSource="${con}">
-    select * from Resort;
+    select * from Client WHERE passport=${sqlstr};
 </sql:query>
 
 <html>
@@ -19,23 +20,26 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/deleteresort" method=post>
-    <td valign=top>
-        Resort id
+Hello!
 
-        <select name="resortid">
-            <c:forEach var="row" items="${db.rows}">
-                <option value=${row.resort_id}>${row.name}</option>
-            </c:forEach>
-        </select>
-
-    <tr bgcolor="#c8d8f8">
-        <td  align=center colspan=2>
-            <input type="submit" value="Submit"> <input type="reset"
-                                                        value="Reset">
-        </td>
+<table>
+    <thead>
+    <tr>
+        <th>Your login</th>
+        <th>Your password</th>
     </tr>
-</form>
+    </thead>
+    <tbody>
+    <c:forEach var="row" items="${db.rows}">
+        <tr>
+            <td> ${row.client_id} </td>
+            <td> ${row.pwd} </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+
+
 <a href="/logout">sign out</a>
 </body>
 </html>

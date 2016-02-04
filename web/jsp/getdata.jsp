@@ -12,47 +12,49 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Client;
+    select * from Form where form_id=${sqlstr};
 </sql:query>
-
 
 <html>
 <head>
-    <title>Hello, World!</title>
+    <title>Title</title>
 </head>
 <body>
+
 <table>
     <thead>
     <tr>
+        <th>form_id</th>
         <th>client_id</th>
-        <th>surname</th>
-        <th>name</th>
-        <th>middle_name</th>
-        <th>passport</th>
-        <th>tour count</th>
+        <th>tour_id</th>
+        <th>date</th>
+        <th>discount</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="row" items="${db.rows}">
         <tr>
+            <td> ${row.form_id} </td>
             <td> ${row.client_id} </td>
-            <td> ${row.surname} </td>
-            <td> ${row.name} </td>
-            <td> ${row.middle_name} </td>
-            <td> ${row.passport} </td>
-            <td> ${row.tour_count} </td>
+            <td> ${row.tour_id} </td>
+            <td> ${row.date} </td>
+            <td> ${row.discount} </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/clients.jsp">reset</a>
-<a href="/jsp/addclient.jsp">add client</a>
-<a href="/jsp/deleteclient.jsp">delete client</a>
-<a href="/jsp/changeclient.jsp">change client</a>
-<a href="/jsp/addtourcount.jsp">add tour count</a>
-<a href="/jsp/findclient.jsp">find client</a>
-<a href="/jsp/sortclients.jsp">sort by surname</a>
-<a href="/touroperator">touroperator</a>
+
+
+<form action="/deleteform" method=post>
+        <input type="hidden" name="formid" value="${sqlstr}" />
+
+        <tr bgcolor="#c8d8f8">
+            <td  align=center colspan=2>
+                <input type="submit" value="Delete this form"> <input type="reset"
+                                                            value="Reset">
+            </td>
+        </tr>
+</form>
 <a href="/logout">sign out</a>
 </body>
 </html>

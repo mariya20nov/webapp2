@@ -83,8 +83,8 @@ public class Client {
         this.tour_count = tour_count;
     }
 
-    public static void addClient(Connection con, String name, String middle_name, String surname, String passport) {
-        String sql = "INSERT INTO Client(name, middle_name, surname, passport, tour_count) VALUES(?,?,?,?,?)";
+    public static void addClient(Connection con, String name, String middle_name, String surname, String passport, String password) {
+        String sql = "INSERT INTO Client(name, middle_name, surname, passport, tour_count, pwd) VALUES(?,?,?,?,?,?)";
 
             try (PreparedStatement ps = con.prepareStatement(sql)) {
                 ps.setString(1, name);
@@ -92,6 +92,7 @@ public class Client {
                 ps.setString(3, surname);
                 ps.setString(4, passport);
                 ps.setInt(5, 0);
+                ps.setString(6, password);
                 ps.executeUpdate();
             } catch (Exception e){
                 e.printStackTrace();

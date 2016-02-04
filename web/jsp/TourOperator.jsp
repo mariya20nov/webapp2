@@ -17,6 +17,7 @@
     <a href="tours">tours</a>
     <a href="jsp/resorts.jsp">resorts</a>
     <a href="forms">forms</a>
+    <a href="/logout">sign out</a>
 </form>
 </body>
 </html>

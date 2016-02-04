@@ -45,6 +45,6 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/clients.jsp">reset</a>
+<a href="/logout">sign out</a>
 </body>
 </html>

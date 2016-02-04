@@ -43,5 +43,6 @@
     </tbody>
 </table>
 <a href="/jsp/resorts.jsp">reset</a>
+<a href="/logout">sign out</a>
 </body>
 </html>

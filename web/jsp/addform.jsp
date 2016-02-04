@@ -10,29 +10,46 @@
                     password="mkpwd"
 />
 
-
-<sql:query var="db" dataSource="${con}">
+<sql:query var="sqlClient" dataSource="${con}">
     select * from Client;
+</sql:query>
+
+<sql:query var="sqlTour" dataSource="${con}">
+    select * from Tour;
 </sql:query>
 
 
 <html>
 <head>
-    <title>Find client</title>
+    <title>Title</title>
 </head>
 <body>
-<form action="/findclient" method=post>
+<form action="/addform" method=post>
     <table cellpadding=4 cellspacing=2 border=0>
 
         <th bgcolor="#CCCCFF" colspan=2>
-            <font size=5>FIND CLIENT</font>
+            <font size=5>NEW FORM</font>
         </th>
 
-        <td  valign=top>
-            Surname
+        <tr bgcolor="#c8d8f8">
+            <td valign=top>
+                Client
 
-            <input type="text" name="surname" value="" size=15 maxlength=20></td>
+                <select name="clientid">
+                    <c:forEach var="row" items="${sqlClient.rows}">
+                        <option value=${row.client_id}>${row.surname} ${row.name} ${row.middle_name}</option>
+                    </c:forEach>
+                </select>
 
+            <td valign=top>
+                Tour
+
+                <select name="tourid">
+                    <c:forEach var="row" items="${sqlTour.rows}">
+                        <option value=${row.tour_id}>${row.name}</option>
+                    </c:forEach>
+                </select>
+        </tr>
 
         <tr bgcolor="#c8d8f8">
             <td  align=center colspan=2>
@@ -42,32 +59,7 @@
         </tr>
 
     </table>
-
 </form>
-
-<table>
-    <thead>
-    <tr>
-        <th>client_id</th>
-        <th>surname</th>
-        <th>name</th>
-        <th>middle_name</th>
-        <th>passport</th>
-        <th>tour count</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="row" items="${db.rows}">
-        <tr>
-            <td> ${row.client_id} </td>
-            <td> ${row.surname} </td>
-            <td> ${row.middle_name} </td>
-            <td> ${row.passport} </td>
-            <td> ${row.tour_count} </td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
 <a href="/logout">sign out</a>
 </body>
 </html>

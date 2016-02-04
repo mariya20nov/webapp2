@@ -30,6 +30,7 @@
         <th>date_beg</th>
         <th>date_end</th>
         <th>cost</th>
+        <th>hot</th>
     </tr>
     </thead>
     <tbody>
@@ -42,17 +43,22 @@
             <td> ${row.date_beg} </td>
             <td> ${row.date_end} </td>
             <td> ${row.cost} </td>
+            <td> ${row.hot} </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 <a href="/jsp/tours.jsp">reset</a>
 
-<a href="/listofresorts">add tour</a>
+<a href="/jsp/addtour.jsp">add tour</a>
 <a href="/jsp/deletetour.jsp">delete tour</a>
 <a href="/jsp/findtour.jsp">find tour</a>
 <a href="/jsp/changetour.jsp">change cost</a>
 
+<a href="/jsp/hottour.jsp">mark as hot</a>
+
 <a href="/touroperator">touroperator</a>
+
+<a href="/logout">sign out</a>
 </body>
 </html>

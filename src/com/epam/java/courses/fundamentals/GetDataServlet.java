@@ -1,5 +1,8 @@
 package com.epam.java.courses.fundamentals;
 
+import com.epam.java.courses.fundamentals.dto.Client;
+import com.epam.java.courses.fundamentals.dto.Form;
+import com.epam.java.courses.fundamentals.dto.Resort;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -16,8 +19,8 @@ import java.sql.SQLException;
 /**
  * Created by maria on 01.02.16.
  */
-@WebServlet("/findresort")
-public class FindResortServlet extends HttpServlet {
+@WebServlet("/getdata")
+public class GetDataServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -32,17 +35,18 @@ public class FindResortServlet extends HttpServlet {
         String usr = "root";
         String password = "mkpwd";
 
-        req.setCharacterEncoding("UTF-8");
+        Logger4j.log = Logger.getLogger(GetDataServlet.class.getName());
 
-        Logger4j.log = Logger.getLogger(FindResortServlet.class.getName());
+        req.setCharacterEncoding("UTF-8");
 
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);
 
-            req.setAttribute("sqlstr", "'"+req.getParameter("resortname")+"'");
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/findresort2.jsp");
-            dispatcher.forward(req, resp);
+            req.setAttribute("sqlstr", req.getParameter("formid"));
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/getdata.jsp");
+            requestDispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
             Logger4j.log.error("Class.forName(driver) is not found. ", e);
@@ -53,7 +57,7 @@ public class FindResortServlet extends HttpServlet {
                 if (con != null) {
                     con.close();
                 }
-            } catch (Exception e) {;
+            } catch (Exception e) {
                 Logger4j.log.error("Closing connection exception. ", e);
             }
 

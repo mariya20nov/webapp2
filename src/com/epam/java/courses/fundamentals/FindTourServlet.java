@@ -34,7 +34,7 @@ public class FindTourServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
-        Logger4j.log = Logger.getLogger(FindTourForClientServlet.class.getName());
+        Logger4j.log = Logger.getLogger(FindTourServlet.class.getName());
 
         try {
             Class.forName(driver);

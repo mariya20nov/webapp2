@@ -36,5 +36,6 @@
         </td>
     </tr>
     </form>
+<a href="/logout">sign out</a>
 </body>
 </html>

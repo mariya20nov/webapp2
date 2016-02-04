@@ -87,6 +87,18 @@ public class Tour {
 
     }
 
+    public static void markAsHot(Connection con, int tour_id) {
+        String sql = "UPDATE Tour SET hot=TRUE WHERE tour_id=?;";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, tour_id);
+            ps.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
     public static void changeTour(Connection con, int tour_id, int cost) {
         int i = 0;
 

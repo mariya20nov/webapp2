@@ -16,6 +16,11 @@
 </sql:query>
 
 
+<sql:query var="db2" dataSource="${con}">
+    select * from Client;
+</sql:query>
+
+
 <html>
 <head>
 </head>
@@ -23,9 +28,9 @@
 <table>
     <thead>
     <tr>
-        <th>form_id</th>
+        <th>form id</th>
         <th>client_id</th>
-        <th>tour_id</th>
+        <th>tour id</th>
         <th>date</th>
         <th>discount</th>
     </tr>
@@ -44,29 +49,34 @@
 </table>
 <a href="/jsp/forms.jsp">reset</a>
 
-<a href="/jsp/addform.jsp">add form</a>
+<form action="/findform" method=post>
+    <table cellpadding=4 cellspacing=2 border=0>
+
+        <th bgcolor="#CCCCFF" colspan=2>
+            <font size=5>FIND FORM</font>
+        </th>
 
 
-<form action="/getdata" method=post>
+        <td valign=top>
+            Client
 
-    <select name="formid">
-        <c:forEach var="row" items="${db.rows}">
-            <option value=${row.form_id}>${row.form_id}</option>
-        </c:forEach>
-    </select>
+            <select name="clientid">
+                <c:forEach var="row" items="${db2.rows}">
+                    <option value=${row.client_id}>${row.surname} ${row.name} ${row.middle_name}</option>
+                </c:forEach>
+            </select>
 
-    <tr bgcolor="#c8d8f8">
-        <td  align=center colspan=2>
-            <input type="submit" value="Get data">
-        </td>
-    </tr>
+
+        <tr bgcolor="#c8d8f8">
+            <td  align=center colspan=2>
+                <input type="submit" value="Find tour"> <input type="reset"
+                                                               value="Reset">
+            </td>
+        </tr>
+
+    </table>
+
 </form>
-
-<a href="/jsp/findform.jsp">find form</a>
-
-<a href="/touroperator">touroperator</a>
-
 <a href="/logout">sign out</a>
 </body>
 </html>
-

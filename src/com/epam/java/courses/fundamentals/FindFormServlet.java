@@ -1,7 +1,7 @@
 package com.epam.java.courses.fundamentals;
 
-import com.epam.java.courses.fundamentals.dto.Resort;
-import com.epam.java.courses.fundamentals.dto.Tour;
+
+import com.epam.java.courses.fundamentals.dto.Client;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -11,15 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.NoSuchFileException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Properties;
 
-/**
- * Created by maria on 01.02.16.
- */
-@WebServlet("/listofresorts")
-public class ListOfResortsToTourServlet extends HttpServlet {
+@WebServlet("/findform")
+public class FindFormServlet extends HttpServlet {
     Connection con;//mk
 
     @Override
@@ -33,42 +31,35 @@ public class ListOfResortsToTourServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
         String usr = "root";
         String password = "mkpwd";
-        Statement statement;
 
         req.setCharacterEncoding("UTF-8");
 
-        Logger4j.log = Logger.getLogger(AddTourServlet.class.getName());
+        Logger4j.log = Logger.getLogger(FindFormServlet.class.getName());
 
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, password);
 
-            statement = con.createStatement();
+            //todo убрать Tour.*
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Resort;");
-            ArrayList<String> arrayList = new ArrayList<String>();
-            while (resultSet.next()) {
-                arrayList.add(resultSet.getString("resort_id"));
-            }
-            Collection<String> resorts = arrayList;
-            req.setAttribute("resorts", resorts);
+            req.setAttribute("sqlstr", "SELECT * FROM Form WHERE client_id='"+req.getParameter("clientid")+"'");
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/addtour.jsp");
-            requestDispatcher.forward(req, resp);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/findform2.jsp");
+            dispatcher.forward(req, resp);
 
         } catch (ClassNotFoundException e) {
             Logger4j.log.error("Class.forName(driver) is not found. ", e);
         } catch (Exception e) {
-            Logger4j.log.error("Connection to DB exception. ", e);;
+            Logger4j.log.error("Connection to DB exception. ", e);
         } finally {
             try {
                 if (con != null) {
                     con.close();
                 }
-            } catch (Exception e) {
-                Logger4j.log.error("Closing connection exception. ", e);;
+            } catch (Exception e) {;
+                Logger4j.log.error("Closing connection exception. ", e);
             }
 
         }
-    }
-}
+    }}
+

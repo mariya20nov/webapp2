@@ -184,5 +184,6 @@
 
     </table>
 </form>
+<a href="/logout">sign out</a>
 </body>
 </html>

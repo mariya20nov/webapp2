@@ -65,5 +65,6 @@
     </c:forEach>
     </tbody>
 </table>
+<a href="/logout">sign out</a>
 </body>
 </html>

@@ -52,5 +52,7 @@
 <a href="/jsp/addtourcount.jsp">add tour count</a>
 <a href="/jsp/findclient.jsp">find client</a>
 <a href="/jsp/clients.jsp">sort by ID</a>
+
+<a href="/logout">sign out</a>
 </body>
 </html>

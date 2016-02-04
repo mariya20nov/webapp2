@@ -48,5 +48,6 @@
 <a href="/jsp/findresort.jsp">find resort</a>
 
 <a href="/touroperator">touroperator</a>
+<a href="/logout">sign out</a>
 </body>
 </html>
