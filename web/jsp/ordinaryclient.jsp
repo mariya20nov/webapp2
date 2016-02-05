@@ -84,15 +84,14 @@
 </form>
 
 <form method="post" action="/jsp/buytour.jsp">
-<input type="hidden" name="client" value="${sqlstr}">
     <input type="submit" value="Buy tour">
 </form>
 
 <form method="post" action="/jsp/showtours.jsp">
-    <input type="hidden" name="client" value="${sqlstr}">
     <input type="submit" value="Show my tours">
 </form>
 
 <a href="/logout">sign out</a>
+
 </body>
 </html>

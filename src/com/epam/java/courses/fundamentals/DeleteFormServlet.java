@@ -32,18 +32,13 @@ public class DeleteFormServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
-        String usr = "root";
-        String password = "mkpwd";
 
         req.setCharacterEncoding("UTF-8");
 
         Logger4j.log = Logger.getLogger(DeleteFormServlet.class.getName());
 
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);
+            con = (Connection) req.getSession().getAttribute("con");
 
             System.out.println(req.getParameter("formid"));
             Form.deleteForm(con, Integer.parseInt(req.getParameter("formid")));
@@ -51,20 +46,8 @@ public class DeleteFormServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/forms.jsp");
             requestDispatcher.forward(req, resp);
 
-        } catch (ClassNotFoundException e) {
-            Logger4j.log.error("Class.forName(driver) is not found. ", e);
         } catch (Exception e) {
             Logger4j.log.error("Connection to DB exception. ", e);
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                ;
-                Logger4j.log.error("Closing connection exception. ", e);
-            }
-
         }
     }
 }

@@ -12,7 +12,7 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select Form.*, Tour.name, Tour.date_beg, Tour.date_end from Form JOIN Tour on Form.tour_id=Tour.tour_id WHERE client_id=<%=request.getParameter("client")%>;
+    select Form.*, Tour.name, Tour.date_beg, Tour.date_end from Form JOIN Tour on Form.tour_id=Tour.tour_id WHERE client_id=${sessionScope.client};
 </sql:query>
 
 
@@ -44,7 +44,7 @@
 </table>
 
 <form action="/refusetour" method=post>
-    <input type="hidden" name="client" value=<%=request.getParameter("client")%>>
+    <input type="hidden" name="client" value=${sessionScope.client}>
 
     <td valign=top>
 

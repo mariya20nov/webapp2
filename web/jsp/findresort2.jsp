@@ -12,7 +12,7 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Resort WHERE name=${sqlstr};
+    select * from Resort WHERE name=${sessionScope.resortname};
 </sql:query>
 
 

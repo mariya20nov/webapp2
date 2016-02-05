@@ -29,50 +29,34 @@ public class FormServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
-        String usr = "root";
-        String password = "mkpwd";
         Statement statement;
 
         Logger4j.log = Logger.getLogger(FormServlet.class.getName());
 
-        try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);;
-
-            statement = con.createStatement();
-            //statement.execute("INSERT INTO Resort VALUES(null, 'AstoriaResort', 'Чехия', 'Карловы Вары');");
-
-            /////////////
-            ResultSet resultSet = statement.executeQuery(GET_ALL_FORMS);
-            Collection<Form> forms = Utils.getEntities(resultSet, Form.class);
-            req.setAttribute("forms", forms);
-
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/forms.jsp");
-            requestDispatcher.forward(req, resp);
-
-           /* resultSet = statement.executeQuery(GET_ALL_CLIENTS);
-            Collection<Client> clients = Utils.getEntities(resultSet, Client.class);
-            req.setAttribute("clients", clients);
-
-            requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
-            requestDispatcher.forward(req, resp);
-            ////////////////*/
-
-        } catch (ClassNotFoundException e) {
-            Logger4j.log.error("Class.forName(driver) is not found. ", e);
-        } catch (Exception e) {
-            Logger4j.log.error("Connection to DB exception. ", e);
-        } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {;
-                Logger4j.log.error("Closing connection exception. ", e);
-            }
+                con = (Connection) req.getSession().getAttribute("con");
 
+                statement = con.createStatement();
+                //statement.execute("INSERT INTO Resort VALUES(null, 'AstoriaResort', 'Чехия', 'Карловы Вары');");
+
+                /////////////
+                ResultSet resultSet = statement.executeQuery(GET_ALL_FORMS);
+                Collection<Form> forms = Utils.getEntities(resultSet, Form.class);
+                req.setAttribute("forms", forms);
+
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/forms.jsp");
+                requestDispatcher.forward(req, resp);
+
+               /* resultSet = statement.executeQuery(GET_ALL_CLIENTS);
+                Collection<Client> clients = Utils.getEntities(resultSet, Client.class);
+                req.setAttribute("clients", clients);
+
+                requestDispatcher = req.getRequestDispatcher("/jsp/clients.jsp");
+                requestDispatcher.forward(req, resp);
+                ////////////////*/
+
+            } catch (Exception e) {
+                Logger4j.log.error("Connection to DB exception. ", e);
         }
 
     }

@@ -12,7 +12,7 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    ${sqlstr}
+    ${sessionScope.sqlstr}
 </sql:query>
 
 

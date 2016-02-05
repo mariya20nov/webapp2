@@ -12,7 +12,7 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Client WHERE surname=${sqlstr};
+    select * from Client WHERE surname=${sessionScope.surname};
 </sql:query>
 
 

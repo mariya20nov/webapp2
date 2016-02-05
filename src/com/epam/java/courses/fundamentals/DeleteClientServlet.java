@@ -27,37 +27,21 @@ public class DeleteClientServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
-        String usr = "root";
-        String password = "mkpwd";
 
         req.setCharacterEncoding("UTF-8");
 
         Logger4j.log = Logger.getLogger(DeleteClientServlet.class.getName());
 
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);;
+            con = (Connection) req.getSession().getAttribute("con");
 
             Client.deleteClient(con, Integer.parseInt(req.getParameter("clientid")));
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/clients.jsp");
             requestDispatcher.forward(req, resp);
 
-        } catch (ClassNotFoundException e) {
-            Logger4j.log.error("Class.forName(driver) is not found. ", e);
         } catch (Exception e) {
             Logger4j.log.error("Connection to DB exception. ", e);
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {;
-                Logger4j.log.error("Closing connection exception. ", e);
-            }
-
         }
     }
 }

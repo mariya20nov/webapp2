@@ -11,7 +11,7 @@
 />
 
 <sql:query var="sqlClient" dataSource="${con}">
-    select * from Client WHERE client_id=<%=request.getParameter("client")%>;
+    select * from Client WHERE client_id=${sessionScope.client};
 </sql:query>
 
 <sql:query var="sqlTour" dataSource="${con}">

@@ -42,7 +42,7 @@ public class AddUserServlet extends HttpServlet {
                 Client.addClient(con, client.getName(), client.getMiddleName(), client.getSurname(),
                         client.getPassport(), req.getParameter("clientpassword")); //todo
 
-                req.setAttribute("sqlstr", "'"+client.getPassport()+"'");
+                req.getSession().setAttribute("passport", "'"+client.getPassport()+"'");
 
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/signup2.jsp");
                 requestDispatcher.forward(req, resp);

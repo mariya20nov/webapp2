@@ -16,7 +16,7 @@
     <a href="jsp/clients.jsp">clients</a>
     <a href="tours">tours</a>
     <a href="jsp/resorts.jsp">resorts</a>
-    <a href="forms">forms</a>
+    <a href="jsp/forms.jsp">forms</a>
     <a href="/logout">sign out</a>
 </form>
 </body>

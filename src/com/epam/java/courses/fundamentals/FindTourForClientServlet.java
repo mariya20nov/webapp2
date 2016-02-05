@@ -27,11 +27,6 @@ public class FindTourForClientServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
-        String usr = "root";
-        String password = "mkpwd";
-
         req.setCharacterEncoding("UTF-8");
 
         //загрузка проперти-файла для логера //todo проверить
@@ -49,31 +44,32 @@ public class FindTourForClientServlet extends HttpServlet {
         Logger4j.log = Logger.getLogger(FindTourForClientServlet.class.getName());
 
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, usr, password);
+            con = (Connection) req.getSession().getAttribute("con");
 
             //todo убрать Tour.*
 
+            String sqlstr = "";
+
             if(!req.getParameter("country").isEmpty() && !req.getParameter("type").isEmpty()) {
-                req.setAttribute("sqlstr", "SELECT Tour.* FROM Tour JOIN Type ON Tour.type_id=Type.type_id JOIN Resort ON Tour.resort_id=Resort.resort_id WHERE Resort.country='"
-                + req.getParameter("country") + "' AND Type.name=" + "'" + req.getParameter("type") + "';");
+                sqlstr = "SELECT Tour.* FROM Tour JOIN Type ON Tour.type_id=Type.type_id JOIN Resort ON Tour.resort_id=Resort.resort_id WHERE Resort.country='"
+                        + req.getParameter("country") + "' AND Type.name=" + "'" + req.getParameter("type") + "';";
             }
             else if(!req.getParameter("country").isEmpty()) {
-                req.setAttribute("sqlstr", "SELECT Tour.* FROM (Tour JOIN Resort ON Tour.resort_id=Resort.resort_id) WHERE Resort.country="
-                        + "'" + req.getParameter("country") + "';");
+                sqlstr = "SELECT Tour.* FROM (Tour JOIN Resort ON Tour.resort_id=Resort.resort_id) WHERE Resort.country="
+                        + "'" + req.getParameter("country") + "';";
             }
             else if (!req.getParameter("type").isEmpty()) {
-                req.setAttribute("sqlstr", "SELECT Tour.* FROM (Tour JOIN Type ON Tour.type_id=Type.type_id) WHERE Type.name="
-                        + "'" + req.getParameter("type") + "';");
+                sqlstr = "SELECT Tour.* FROM (Tour JOIN Type ON Tour.type_id=Type.type_id) WHERE Type.name="
+                        + "'" + req.getParameter("type") + "';";
             }
             else {
-                req.setAttribute("sqlstr", "SELECT * FROM Tour;");
+                sqlstr = "SELECT * FROM Tour;";
             }
+
+            req.getSession().setAttribute("sqlstr", sqlstr);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/ordinaryclient2.jsp");
             dispatcher.forward(req, resp);
 
-        } catch (ClassNotFoundException e) {
-            Logger4j.log.error("Class.forName(driver) is not found. ", e);
         } catch (Exception e) {
             Logger4j.log.error("Connection to DB exception. ", e);
         } finally {

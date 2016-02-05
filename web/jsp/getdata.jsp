@@ -12,7 +12,7 @@
 
 
 <sql:query var="db" dataSource="${con}">
-    select * from Form where form_id=${sqlstr};
+    select * from Form where form_id=${sessionScope.formid};
 </sql:query>
 
 <html>
@@ -46,7 +46,7 @@
 
 
 <form action="/deleteform" method=post>
-        <input type="hidden" name="formid" value="${sqlstr}" />
+        <input type="hidden" name="formid" value="${sessionScope.formid}" />
 
         <tr bgcolor="#c8d8f8">
             <td  align=center colspan=2>

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,14 +35,15 @@ public class LoginServlet extends HttpServlet {
 
         if (request.getParameter("j_username").equals("tomcat")) {
             request.login("tomcat", request.getParameter("j_password"));
+
+            ////////////////
+            HttpSession se = request.getSession(true);
+            se.setAttribute("con", con);
+            ////////////////
+
             requestDispatcher = request.getRequestDispatcher("/main");
         }
         else {
-
-            ////////////////
-            
-            ////////////////
-
             try {
                 Class.forName(driver);
                 con = DriverManager.getConnection(url, usr, password);
@@ -54,19 +56,18 @@ public class LoginServlet extends HttpServlet {
                         rightPwd = true;
                 }
 
+
+                ////////////////
+                HttpSession se = request.getSession(true);
+                se.setAttribute("con", con);
+                se.setAttribute("client", request.getParameter("j_username"));
+                ////////////////
+
+
             } catch (ClassNotFoundException e) {
                 Logger4j.log.error("Class.forName(driver) is not found. ", e);
             } catch (Exception e) {
                 Logger4j.log.error("Connection to DB exception. ", e);
-            } finally {
-                try {
-                    if (con != null) {
-                        con.close();
-                    }
-                } catch (Exception e) {;
-                    Logger4j.log.error("Closing connection exception. ", e);
-                }
-
             }
 
             request.setAttribute("sqlstr", request.getParameter("j_username"));///
