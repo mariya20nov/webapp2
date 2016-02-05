@@ -1,5 +1,6 @@
 package com.epam.java.courses.fundamentals;
 
+import com.epam.java.courses.fundamentals.cp.Pool;
 import com.epam.java.courses.fundamentals.dto.Client;
 import org.apache.log4j.Logger;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,12 +23,7 @@ public class AddUserServlet extends HttpServlet {
         req.login("tomcat", "tomcat");
 
         Connection con = null;
-
-            String driver = "com.mysql.jdbc.Driver";
-            String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
-            String usr = "root";
-            String password = "mkpwd";
-
+        
             Logger4j.log = Logger.getLogger(AddUserServlet.class.getName());
 
             req.setCharacterEncoding("UTF-8");
@@ -36,8 +33,9 @@ public class AddUserServlet extends HttpServlet {
             System.out.println("client surname:" + client.getSurname());
 
             try {
-                Class.forName(driver);
-                con = DriverManager.getConnection(url, usr, password);
+                con = getConnection(req);
+                HttpSession se = req.getSession(true);
+                se.setAttribute("con", con);
 
                 Client.addClient(con, client.getName(), client.getMiddleName(), client.getSurname(),
                         client.getPassport(), req.getParameter("clientpassword")); //todo
@@ -47,8 +45,6 @@ public class AddUserServlet extends HttpServlet {
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/signup2.jsp");
                 requestDispatcher.forward(req, resp);
 
-            } catch (ClassNotFoundException e) {
-                Logger4j.log.error("Class.forName(driver) is not found. ", e);
             } catch (Exception e) {
                 Logger4j.log.error("Connection to DB exception. ", e);
             } finally {
@@ -61,5 +57,15 @@ public class AddUserServlet extends HttpServlet {
                 }
 
             }
+    }
+
+
+    private Connection getConnection(HttpServletRequest req) {
+        Connection connection = (Connection) req.getAttribute("connection");
+        return (connection == null) ? getConnection(): connection;
+    }
+
+    private Connection getConnection() {
+        return Pool.getInstance().getConnection();
     }
 }
