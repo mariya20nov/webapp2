@@ -1,5 +1,6 @@
 package com.epam.java.courses.fundamentals;
 
+import com.epam.java.courses.fundamentals.cp.Pool;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -9,21 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 @WebServlet("/j_security_check")
 public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost/TravelAgency?characterEncoding=UTF-8";
-        String usr = "root";
-        String password = "mkpwd";
         Connection con = null;
         boolean rightPwd = false;
 
@@ -37,16 +32,15 @@ public class LoginServlet extends HttpServlet {
             request.login("tomcat", request.getParameter("j_password"));
 
             ////////////////
-            HttpSession se = request.getSession(true);
-            se.setAttribute("con", con);
+            //HttpSession se = request.getSession(true);
+            //se.setAttribute("con", con);
             ////////////////
 
             requestDispatcher = request.getRequestDispatcher("/main");
         }
         else {
             try {
-                Class.forName(driver);
-                con = DriverManager.getConnection(url, usr, password);
+                con = getConnection(request);
 
                 Statement statement = con.createStatement();
 
@@ -64,9 +58,9 @@ public class LoginServlet extends HttpServlet {
                 ////////////////
 
 
-            } catch (ClassNotFoundException e) {
+            } /*catch (ClassNotFoundException e) {
                 Logger4j.log.error("Class.forName(driver) is not found. ", e);
-            } catch (Exception e) {
+            }*/ catch (Exception e) {
                 Logger4j.log.error("Connection to DB exception. ", e);
             }
 
@@ -81,5 +75,15 @@ public class LoginServlet extends HttpServlet {
             }
         }
         requestDispatcher.forward(request, response);
+    }
+
+
+    private Connection getConnection(HttpServletRequest req) {
+        Connection connection = (Connection) req.getAttribute("connection");
+        return (connection == null) ? getConnection(): connection;
+    }
+
+    private Connection getConnection() {
+        return Pool.getInstance().getConnection();
     }
 }

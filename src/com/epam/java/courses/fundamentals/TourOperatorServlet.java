@@ -1,5 +1,6 @@
 package com.epam.java.courses.fundamentals;
 
+import com.epam.java.courses.fundamentals.cp.Pool;
 import com.epam.java.courses.fundamentals.dto.Client;
 import com.epam.java.courses.fundamentals.dto.Resort;
 import org.apache.log4j.Level;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +50,9 @@ public class TourOperatorServlet extends HttpServlet {
         Logger4j.log = Logger.getLogger(TourOperatorServlet.class.getName());
 
         try {
-            con = (Connection) req.getSession().getAttribute("con");
+            con = getConnection(req);
+            HttpSession se = req.getSession(true);
+            se.setAttribute("con", con);
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/TourOperator.jsp");
             requestDispatcher.forward(req, resp);
@@ -60,21 +64,12 @@ public class TourOperatorServlet extends HttpServlet {
     }
 
 
-//todo что это?!
     private Connection getConnection(HttpServletRequest req) {
         Connection connection = (Connection) req.getAttribute("connection");
         return (connection == null) ? getConnection(): connection;
     }
 
-//    private Connection getConnection() {
-//        return Pool.getInstance().getConnection();
-//    }
-
-    private Connection getConnection() {
-        try {
-            return Utils.localJndiSearch(JDBC_TEST_DB, DataSource.class).getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+      private Connection getConnection() {
+          return Pool.getInstance().getConnection();
+      }
 }

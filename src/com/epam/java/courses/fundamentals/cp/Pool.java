@@ -1,5 +1,8 @@
 package com.epam.java.courses.fundamentals.cp;
 
+import com.epam.java.courses.fundamentals.Logger4j;
+import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,7 +14,7 @@ public class Pool {
 
     public static final int GET_CONNECTION_MILLIS = 1000;
     //public static final String PROPERTIES_PATH = "C:\\Users\\Vyacheslav_Lapin\\Projects\\experiments\\webtest\\web\\WEB-INF\\pool-config.properties";
-    public static final String PROPERTIES_PATH = "/home/maria/ApacheTomcat/webapp2/web/WEB-INF/pool-config.properties";
+    public static final String PROPERTIES_PATH = "/home/maria/IdeaProjects/webapp2/web/WEB-INF/pool-config.properties";
     private static Pool INSTANCE;
 
     public static Pool getInstance() {
@@ -42,6 +45,12 @@ public class Pool {
             URL = properties.getProperty("db.url");
             USER = properties.getProperty("db.user");
             PASSWORD = properties.getProperty("db.password");
+
+            Logger4j.log = Logger.getLogger(Pool.class.getName());
+            Logger4j.log.info("driver" + properties.getProperty("db.driver"));
+            Logger4j.log.info("url: " + properties.getProperty("db.url"));
+            Logger4j.log.info("user: " + properties.getProperty("db.user"));
+            Logger4j.log.info("password: " + properties.getProperty("db.password"));
 
             capacity = Integer.parseInt(properties.getProperty("db.poolsize"));
             connections = new IdentityHashMap<>(capacity);
