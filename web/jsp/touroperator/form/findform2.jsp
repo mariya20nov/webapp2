@@ -20,7 +20,13 @@
 <head>
 </head>
 <body>
-<table>
+<a href="/jsp/touroperator/form/forms.jsp"><p style="position:absolute; top:0;">Back</p></a>
+
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<a href="/jsp/touroperator/form/findform.jsp" ><p style="position:absolute; top:12%;">Find another client</p></a>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:35%">
     <thead>
     <tr>
         <th>form id</th>
@@ -42,7 +48,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/touroperator/form/findform.jsp">reset</a>
-<a href="/logout">sign out</a>
 </body>
 </html>

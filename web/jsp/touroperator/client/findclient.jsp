@@ -29,7 +29,7 @@
 
     <p> Surname </p> <input type="text" name="surname" value="" size=15 maxlength=20></td>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Find client">
 </form>
 
 <table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">

@@ -17,11 +17,15 @@
 
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
+<a href="/jsp/touroperator/form/forms.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-<table>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<p style="position:absolute; left:35%; font-size:30px">Info about this form:</p>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>form_id</th>
@@ -45,16 +49,9 @@
 </table>
 
 
-<form action="/deleteform" method=post>
-        <input type="hidden" name="formid" value="${sessionScope.formid}" />
-
-        <tr bgcolor="#c8d8f8">
-            <td  align=center colspan=2>
-                <input type="submit" value="Delete this form"> <input type="reset"
-                                                            value="Reset">
-            </td>
-        </tr>
+<form action="/deleteform" method=post style="position:absolute; top:12%;">
+    <input type="hidden" name="formid" value="${sessionScope.formid}" />
+    <input type="submit" value="Delete this form">
 </form>
-<a href="/logout">sign out</a>
 </body>
 </html>

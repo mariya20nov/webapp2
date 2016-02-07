@@ -21,45 +21,30 @@
 
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
-<form action="/addform" method=post>
-    <table cellpadding=4 cellspacing=2 border=0>
+<a href="/jsp/touroperator/form/forms.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-        <th bgcolor="#CCCCFF" colspan=2>
-            <font size=5>NEW FORM</font>
-        </th>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-        <tr bgcolor="#c8d8f8">
-            <td valign=top>
-                Client
+<form action="/addform" method=post style="position:absolute; top:7%;">
+    <p style="font-size:30px"> New form</p>
 
-                <select name="clientid">
-                    <c:forEach var="row" items="${sqlClient.rows}">
-                        <option value=${row.client_id}>${row.surname} ${row.name} ${row.middle_name}</option>
-                    </c:forEach>
-                </select>
+    <p> Client </p>
+    <select name="clientid">
+        <c:forEach var="row" items="${sqlClient.rows}">
+            <option value=${row.client_id}>${row.surname} ${row.name} ${row.middle_name}</option>
+        </c:forEach>
+    </select>
 
-            <td valign=top>
-                Tour
+    <p> Tour </p>
+    <select name="tourid">
+        <c:forEach var="row" items="${sqlTour.rows}">
+            <option value=${row.tour_id}>${row.name}</option>
+        </c:forEach>
+    </select>
 
-                <select name="tourid">
-                    <c:forEach var="row" items="${sqlTour.rows}">
-                        <option value=${row.tour_id}>${row.name}</option>
-                    </c:forEach>
-                </select>
-        </tr>
-
-        <tr bgcolor="#c8d8f8">
-            <td  align=center colspan=2>
-                <input type="submit" value="Submit"> <input type="reset"
-                                                            value="Reset">
-            </td>
-        </tr>
-
-    </table>
+    <input type="submit" value="Add form">
 </form>
-<a href="/logout">sign out</a>
 </body>
 </html>

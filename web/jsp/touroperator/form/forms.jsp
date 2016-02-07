@@ -20,7 +20,13 @@
 <head>
 </head>
 <body>
-<table>
+<a href="/jsp/touroperator/TourOperator.jsp"><p style="position:absolute; top:0;">Back</p></a>
+
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<p style="position:absolute; left:35%; font-size:30px">Forms</p>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>form_id</th>
@@ -42,12 +48,13 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/touroperator/form/forms.jsp">reset</a>
-
-<a href="/jsp/touroperator/form/addform.jsp">add form</a>
 
 
-<form action="/getdata" method=post>
+<a href="/jsp/touroperator/form/addform.jsp"><p style="position:absolute; top:15%;">add form</p></a>
+<a href="/jsp/touroperator/form/findform.jsp"><p style="position:absolute; top:18%;">find form</p></a>
+
+<form action="/getdata" method=post style="position:absolute; top:30%;">
+    <p>Get data about form with ID</p>
 
     <select name="formid">
         <c:forEach var="row" items="${db.rows}">
@@ -62,11 +69,6 @@
     </tr>
 </form>
 
-<a href="/jsp/touroperator/form/findform.jsp">find form</a>
-
-<a href="/jsp/touroperator/TourOperator.jsp">touroperator</a>
-
-<a href="/logout">sign out</a>
 </body>
 </html>
 
