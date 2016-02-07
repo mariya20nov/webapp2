@@ -20,7 +20,13 @@
 <head>
 </head>
 <body>
-<table>
+<a href="/jsp/touroperator/tour/tours.jsp"><p style="position:absolute; top:0;">Back</p></a>
+
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<a href="/jsp/touroperator/tour/findtour.jsp" ><p style="position:absolute; top:12%;">Find another tour</p></a>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>tour id</th>
@@ -48,8 +54,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/touroperator/tour/findtour.jsp">reset</a>
-
-<a href="/logout">sign out</a>>
 </body>
 </html>

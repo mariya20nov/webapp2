@@ -20,7 +20,7 @@
 <head>
 </head>
 <body>
-<a href="/jsp/touroperator/TourOperator.jsp"><p style="position:absolute; top:0;">Back</p></a>
+<a href="/jsp/touroperator/client/clients.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
 <a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 

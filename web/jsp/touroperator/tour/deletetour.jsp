@@ -16,26 +16,22 @@
 
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
-<form action="/deletetour" method=post>
-    <td valign=top>
-        Tour
+<a href="/jsp/touroperator/tour/tours.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-        <select name="tourid">
-            <c:forEach var="row" items="${db.rows}">
-                <option value=${row.tour_id}>${row.name}</option>
-            </c:forEach>
-        </select>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-    <tr bgcolor="#c8d8f8">
-        <td  align=center colspan=2>
-            <input type="submit" value="Submit"> <input type="reset"
-                                                        value="Reset">
-        </td>
-    </tr>
+<form action="/deletetour" method=post style="position:absolute; top:5%;">
+    <p style="font-size:30px"> Delete tour</p>
+
+    <select name="tourid">
+        <c:forEach var="row" items="${db.rows}">
+            <option value=${row.tour_id}>${row.name}</option>
+        </c:forEach>
+    </select>
+
+    <input type="submit" value="Submit">
 </form>
-<a href="/logout">sign out</a>
 </body>
 </html>

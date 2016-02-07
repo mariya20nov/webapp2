@@ -17,44 +17,32 @@
 
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
-<form action="/addtour" method=post>
-    <table cellpadding=4 cellspacing=2 border=0>
+<a href="/jsp/touroperator/TourOperator.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-        <th bgcolor="#CCCCFF" colspan=2>
-            <font size=5>NEW TOUR</font>
-        </th>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-        <tr bgcolor="#c8d8f8">
-            <td valign=top>
-                resort
+<form action="/addtour" method=post style="position:absolute; top:7%;">
+    <p style="font-size:30px"> New tour</p>
 
-                <select name="resortid">
-                    <c:forEach var="row" items="${db.rows}">
-                        <option value=${row.resort_id}>${row.name}</option>
-                    </c:forEach>
-                </select>
+    <p> Resort </p>
+    <select name="resortid">
+        <c:forEach var="row" items="${db.rows}">
+            <option value=${row.resort_id}>${row.name}</option>
+        </c:forEach>
+    </select>
 
-            <td valign=top>
-                type
+    <p> Type </p>
+    <select name="typeid">
+        <option value="1">Шоппинг</option>
+        <option value="2">Экскурсия</option>
+        <option value="3">Отдых</option>
+    </select></td>
 
-                <select name="typeid">
-                    <option value="1">Шоппинг</option>
-                    <option value="2">Экскурсия</option>
-                    <option value="3">Отдых</option>
-                </select></td>
-        </tr>
-        <td  valign=top>
-            Name
+    <p> Name </p> <input type="text" name="name" value="" size=15 maxlength=20></td>
 
-            <input type="text" name="name" value="" size=15 maxlength=20></td>
-
-        <tr>
-        <td valign=top>
-            Date of beginning
-
+    <p> Date of beginning </p>
             <select name="begday">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -108,12 +96,8 @@
                 <option value="116">2016</option>
                 <option value="117">2017</option>
             </select></td>
-        </td>
-        </tr>
 
-        <td valign=top>
-            Date of ending
-
+    <p> Date of ending </p>
             <select name="endday">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -169,21 +153,9 @@
             </select></td>
         </td>
 
-        <td valign=top>
-            Cost
+    <p> Cost </p><input type="text" name="cost" value="" size=25  maxlength=125>
 
-            <input type="text" name="cost" value="" size=25  maxlength=125>
-        </td>
-
-        <tr bgcolor="#c8d8f8">
-            <td  align=center colspan=2>
-                <input type="submit" value="Submit"> <input type="reset"
-                                                            value="Reset">
-            </td>
-        </tr>
-
-    </table>
+    <input type="submit" value="Add">
 </form>
-<a href="/logout">sign out</a>
 </body>
 </html>

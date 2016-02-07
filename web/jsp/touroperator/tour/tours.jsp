@@ -20,7 +20,13 @@
 <head>
 </head>
 <body>
-<table>
+<a href="/jsp/touroperator/TourOperator.jsp"><p style="position:absolute; top:0;">Back</p></a>
+
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<p style="position:absolute; left:35%; font-size:30px">Tours</p>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:22%">
     <thead>
     <tr>
         <th>tour id</th>
@@ -48,17 +54,11 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/touroperator/tour/tours.jsp">reset</a>
 
-<a href="/jsp/touroperator/tour/addtour.jsp">add tour</a>
-<a href="/jsp/touroperator/tour/deletetour.jsp">delete tour</a>
-<a href="/jsp/touroperator/tour/findtour.jsp">find tour</a>
-<a href="/jsp/touroperator/tour/changetour.jsp">change cost</a>
-
-<a href="/jsp/touroperator/tour/hottour.jsp">mark as hot</a>
-
-<a href="/jsp/touroperator/TourOperator.jsp">touroperator</a>
-
-<a href="/logout">sign out</a>
+<a href="/jsp/touroperator/tour/addtour.jsp"><p style="position:absolute; top:15%;">add tourt</p></a>
+<a href="/jsp/touroperator/tour/deletetour.jsp"><p style="position:absolute; top:18%;">delete tour</p></a>
+<a href="/jsp/touroperator/tour/findtour.jsp"><p style="position:absolute; top:21%;">find tour</p></a>
+<a href="/jsp/touroperator/tour/changetour.jsp"><p style="position:absolute; top:24%;">change cost</p></a>
+<a href="/jsp/touroperator/tour/hottour.jsp"><p style="position:absolute; top:27%;">mark as hot</p></a>
 </body>
 </html>

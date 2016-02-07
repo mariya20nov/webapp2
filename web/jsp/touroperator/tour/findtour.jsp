@@ -20,7 +20,35 @@
 <head>
 </head>
 <body>
-<table>
+<a href="/jsp/touroperator/tour/tours.jsp"><p style="position:absolute; top:0;">Back</p></a>
+
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<form action="/findtour" method=post style="position:absolute; top:7%;">
+    <p style="font-size:30px"> Find tour</p>
+
+    <select name="country">
+        <option value="">Любая страна</option>
+        <option value="Австрия">Австрия</option>
+        <option value="Германия">Германия</option>
+        <option value="Индия">Индия</option>
+        <option value="Россия">Россия</option>
+        <option value="Чехия">Чехия</option>
+    </select>
+
+    <select name="type">
+        <option value="">Любой тип отдыха</option>
+        <option value="Шоппинг">Шоппинг</option>
+        <option value="Экскурсия">Экскурсия</option>
+        <option value="Отдых">Отдых</option>
+    </select>
+
+    <p></p>
+
+    <input type="submit" value="Find tour">
+</form>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>tour id</th>
@@ -48,42 +76,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/touroperator/tours.jsptor/tours.jsp">reset</a>
-
-<form action="/findtour" method=post>
-    <table cellpadding=4 cellspacing=2 border=0>
-
-        <th bgcolor="#CCCCFF" colspan=2>
-            <font size=5>FIND TOUR</font>
-        </th>
-
-        <select name="country">
-            <option value="">Любая страна</option>
-            <option value="Австрия">Австрия</option>
-            <option value="Германия">Германия</option>
-            <option value="Индия">Индия</option>
-            <option value="Россия">Россия</option>
-            <option value="Чехия">Чехия</option>
-        </select>
-
-        <select name="type">
-            <option value="">Любой тип отдыха</option>
-            <option value="Шоппинг">Шоппинг</option>
-            <option value="Экскурсия">Экскурсия</option>
-            <option value="Отдых">Отдых</option>
-        </select>
-
-
-        <tr bgcolor="#c8d8f8">
-            <td  align=center colspan=2>
-                <input type="submit" value="Find tour"> <input type="reset"
-                                                               value="Reset">
-            </td>
-        </tr>
-
-    </table>
-
-</form>
-<a href="/logout">sign out</a>
 </body>
 </html>

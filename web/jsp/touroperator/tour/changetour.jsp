@@ -19,36 +19,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<a href="/jsp/touroperator/tour/tours.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-<form action="/changetour" method=post>
-    <td valign=top>
-        Tour_id to change cost
-        <select name="tourid">
-            <c:forEach var="row" items="${db.rows}">
-                <option value=${row.tour_id}>${row.name}</option>
-            </c:forEach>
-        </select>
-        <table cellpadding=4 cellspacing=2 border=0>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-            <th bgcolor="#CCCCFF" colspan=2>
-                <font size=5>CHANGE Tour cost</font>
-            </th>
+<form action="/changetour" method=post style="position:absolute; top:7%;">
+    <p style="font-size:30px"> Change tour cost</p>
 
-            <td valign=top>
-                Cost
+    <select name="tourid">
+        <c:forEach var="row" items="${db.rows}">
+            <option value=${row.tour_id}>${row.name}</option>
+        </c:forEach>
+    </select>
 
-                <input type="text" name="cost" value="" size=25  maxlength=125>
-            </td>
+    <p> New cost </p> <input type="text" name="cost" value="" size=25  maxlength=15>
 
-            <tr bgcolor="#c8d8f8">
-                <td  align=center colspan=2>
-                    <input type="submit" value="Submit"> <input type="reset"
-                                                                value="Reset">
-                </td>
-            </tr>
-
-        </table>
+    <input type="submit" value="Submit">
 </form>
-<a href="/logout">sign out</a>
 </body>
 </html>
