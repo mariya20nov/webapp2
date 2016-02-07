@@ -12,7 +12,7 @@
             <p style="font-size:30px"> Log in</p>
             <p>Login</p> <input type="login" name="j_username" title="Login"/>
             <p>Password</p> <input type="password" name="j_password" autocomplete="off" title="Password"/><br/>
-            <input type="submit"/>
+            <input type="submit" value="Log in"/>
         </form>
 
         <p></p>

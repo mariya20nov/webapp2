@@ -18,7 +18,7 @@ import java.io.IOException;
                 @HttpMethodConstraint(value = "GET", rolesAllowed = {"tomcat"}),
                 @HttpMethodConstraint(value = "POST", rolesAllowed = {"manager-gui"}),
         })
-public class HelloWorldServlet extends HttpServlet {
+public class BeginningServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
