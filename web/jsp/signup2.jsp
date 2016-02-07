@@ -17,12 +17,11 @@
 
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
 Hello!
 
-<table>
+<table border="2" cellpadding="10" bordercolor="green" >
     <thead>
     <tr>
         <th>Your login</th>
@@ -39,7 +38,7 @@ Hello!
     </tbody>
 </table>
 
-
-<a href="/logout">sign out</a>
+<p></p>
+<a href="/logout">Log in</a>
 </body>
 </html>

@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 
             if(rightPwd) {
                 request.login("role1", "tomcat");
-                requestDispatcher = request.getRequestDispatcher("/jsp/Client/ordinaryclient.jsp");
+                requestDispatcher = request.getRequestDispatcher("/jsp/client/ordinaryclient.jsp");
             }
             else {
                 requestDispatcher = request.getRequestDispatcher("/jsp/loginerror.jsp");
