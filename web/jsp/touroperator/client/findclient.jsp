@@ -18,34 +18,21 @@
 
 <html>
 <head>
-    <title>Find client</title>
 </head>
 <body>
-<form action="/findclient" method=post>
-    <table cellpadding=4 cellspacing=2 border=0>
+<a href="/jsp/touroperator/client/clients.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-        <th bgcolor="#CCCCFF" colspan=2>
-            <font size=5>FIND CLIENT</font>
-        </th>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-        <td  valign=top>
-            Surname
+<form action="/findclient" method=post style="position:absolute; top:7%;">
+    <p style="font-size:30px"> Find client</p>
 
-            <input type="text" name="surname" value="" size=15 maxlength=20></td>
+    <p> Surname </p> <input type="text" name="surname" value="" size=15 maxlength=20></td>
 
-
-        <tr bgcolor="#c8d8f8">
-            <td  align=center colspan=2>
-                <input type="submit" value="Submit"> <input type="reset"
-                                                            value="Reset">
-            </td>
-        </tr>
-
-    </table>
-
+    <input type="submit" value="Submit">
 </form>
 
-<table>
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>client_id</th>
@@ -61,6 +48,7 @@
         <tr>
             <td> ${row.client_id} </td>
             <td> ${row.surname} </td>
+            <td> ${row.name} </td>
             <td> ${row.middle_name} </td>
             <td> ${row.passport} </td>
             <td> ${row.tour_count} </td>
@@ -68,6 +56,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/logout">sign out</a>
 </body>
 </html>

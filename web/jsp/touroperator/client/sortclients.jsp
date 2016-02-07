@@ -18,10 +18,15 @@
 
 <html>
 <head>
-    <title>Hello, World!</title>
 </head>
 <body>
-<table>
+<a href="/jsp/touroperator/TourOperator.jsp"><p style="position:absolute; top:0;">Back</p></a>
+
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<p style="position:absolute; left:35%; font-size:30px">Clients</p>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>client_id</th>
@@ -45,14 +50,11 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="clients.jsp">reset</a>
-<a href="/jsp/touroperator/client/addclient.jsp">add client</a>
-<a href="/jsp/touroperator/client/deleteclient.jsp">delete client</a>
-<a href="/jsp/touroperator/client/changeclient.jsp">change client</a>
-<a href="/jsp/touroperator/client/addtourcount.jsp">add tour count</a>
-<a href="/jsp/touroperator/client/findclient.jsp">find client</a>
-<a href="/jsp/touroperator/client/clients.jsp">sort by ID</a>
 
-<a href="/logout">sign out</a>
+<a href="/jsp/touroperator/client/addclient.jsp"><p style="position:absolute; top:15%;">add client</p></a>
+<a href="/jsp/touroperator/client/deleteclient.jsp"><p style="position:absolute; top:18%;">delete client</p></a>
+<a href="/jsp/touroperator/client/changeclient.jsp"><p style="position:absolute; top:21%;">change client</p></a>
+<a href="/jsp/touroperator/client/findclient.jsp"><p style="position:absolute; top:24%;">find client</p></a>
+<a href="/jsp/touroperator/client/clients.jsp"><p style="position:absolute; top:27%;">sort by id</p></a>
 </body>
 </html>

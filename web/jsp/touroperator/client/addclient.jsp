@@ -4,44 +4,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<form action="/addclient" method=post>
-        <table cellpadding=4 cellspacing=2 border=0>
+<a href="/jsp/touroperator/client/clients.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-            <th bgcolor="#CCCCFF" colspan=2>
-                <font size=5>NEW CLIENT</font>
-            </th>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-            <tr bgcolor="#c8d8f8">
-                <td valign=top>
-                    Name
+<form action="/addclient" method=post style="position:absolute; top:7%;">
+    <p style="font-size:30px"> New client</p>
 
-                    <input type="text" name="clientname" value="" size=15 maxlength=20></td>
-                <td valign=top>
-                    Middle name
+    <p> Surname </p> <input type="text" name="clientsurname" value="" size=15 maxlength=20>
+    <p> Name </p> <input type="text" name="clientname" value="" size=15 maxlength=20>
+    <p> Middle name </p> <input type="text" name="clientmiddlename" value="" size=15 maxlength=20>
+    <p> Passport </p> <input type="text" name="clientpassport" value="" size=25  maxlength=10>
 
-                    <input type="text" name="clientmiddlename" value="" size=15 maxlength=20></td>
-            </tr>
-            <td valign=top>
-                <td  valign=top>
-                    Surname
-
-                    <input type="text" name="clientsurname" value="" size=15 maxlength=20></td>
-
-                <td valign=top>
-                    Passport
-
-                    <input type="text" name="clientpassport" value="" size=25  maxlength=125>
-                </td>
-
-            <tr bgcolor="#c8d8f8">
-                <td  align=center colspan=2>
-                    <input type="submit" value="Submit"> <input type="reset"
-                                                                value="Reset">
-                </td>
-            </tr>
-
-        </table>
+    <input type="submit" value="Add">
 </form>
-<a href="/logout">sign out</a>
 </body>
 </html>
