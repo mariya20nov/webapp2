@@ -27,7 +27,7 @@
 <form action="/findclient" method=post style="position:absolute; top:7%;">
     <p style="font-size:30px"> Find client</p>
 
-    <p> Surname </p> <input type="text" name="surname" value="" size=15 maxlength=20></td>
+    <p> Surname </p> <input type="text" name="surname" value="" size=15 maxlength=20>
 
     <input type="submit" value="Find client">
 </form>

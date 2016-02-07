@@ -18,11 +18,15 @@
 
 <html>
 <head>
-    <title> </title>
 </head>
 <body>
+<a href="/jsp/touroperator/resort/resorts.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-<table>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
+
+<a href="/jsp/touroperator/resort/findresort.jsp" ><p style="position:absolute; top:12%;">Find another resort</p></a>
+
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>resort_id</th>
@@ -42,7 +46,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/jsp/touroperator/resort/resorts.jsp">reset</a>
-<a href="/logout">sign out</a>
 </body>
 </html>

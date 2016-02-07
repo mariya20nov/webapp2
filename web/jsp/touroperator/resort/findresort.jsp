@@ -18,34 +18,21 @@
 
 <html>
 <head>
-    <title>Find resort</title>
 </head>
 <body>
-<form action="/findresort" method=post>
-    <table cellpadding=4 cellspacing=2 border=0>
+<a href="/jsp/touroperator/resort/resorts.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-        <th bgcolor="#CCCCFF" colspan=2>
-            <font size=5>FIND RESORT</font>
-        </th>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-        <td  valign=top>
-            Name
+<form action="/findresort" method=post style="position:absolute; top:7%;">
+    <p style="font-size:30px"> Find resort</p>
 
-            <input type="text" name="resortname" value="" size=15 maxlength=20></td>
+    <p> Name </p> <input type="text" name="resortname" value="" size=15 maxlength=20>
 
-
-        <tr bgcolor="#c8d8f8">
-            <td  align=center colspan=2>
-                <input type="submit" value="Submit"> <input type="reset"
-                                                            value="Reset">
-            </td>
-        </tr>
-
-    </table>
-
+    <input type="submit" value="Find resort">
 </form>
 
-<table>
+<table border="2" cellpadding="10" bordercolor="green" style="position:absolute; top:12%; left:25%">
     <thead>
     <tr>
         <th>resort_id</th>
@@ -65,6 +52,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/logout">sign out</a>
 </body>
 </html>

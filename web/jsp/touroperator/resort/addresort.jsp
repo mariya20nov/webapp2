@@ -1,46 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: maria
-  Date: 01.02.16
-  Time: 16:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
 </head>
 <body>
-<form action="/addresort" method=post>
-    <table cellpadding=4 cellspacing=2 border=0>
+<a href="/jsp/touroperator/resort/resorts.jsp"><p style="position:absolute; top:0;">Back</p></a>
 
-        <th bgcolor="#CCCCFF" colspan=2>
-            <font size=5>NEW RESORT</font>
-        </th>
+<a href="/logout" ><p style="position:absolute; top:0; left:75%;">Log out</p></a>
 
-        <tr bgcolor="#c8d8f8">
-            <td valign=top>
-                Name
+<form action="/addresort" method=post  style="position:absolute; top:7%;">
+    <p style="font-size:30px"> New resort</p>
 
-                <input type="text" name="name" value="" size=15 maxlength=20></td>
-            <td valign=top>
-                Country
+    <p> Name </p> <input type="text" name="name" value="" size=15 maxlength=20>
+    <p> Country </p> <input type="text" name="country" value="" size=15 maxlength=20>
+    <p> Location </p> <input type="text" name="location" value="" size=15 maxlength=20>
 
-                <input type="text" name="country" value="" size=15 maxlength=20></td>
-            <td valign=top>
-                Location
-
-                <input type="text" name="location" value="" size=15 maxlength=20></td>
-        </tr>
-        <tr bgcolor="#c8d8f8">
-            <td  align=center colspan=2>
-                <input type="submit" value="Submit"> <input type="reset"
-                                                            value="Reset">
-            </td>
-        </tr>
-
-    </table>
+    <input type="submit" value="Add">
 </form>
-<a href="/logout">sign out</a>
 </body>
 </html>
