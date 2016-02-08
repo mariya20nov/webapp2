@@ -15,7 +15,7 @@ import java.sql.*;
 
 @WebServlet("/findform")
 public class FindFormServlet extends HttpServlet {
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,8 +31,6 @@ public class FindFormServlet extends HttpServlet {
 
         try {
             con = (Connection) req.getSession().getAttribute("con");
-
-            //todo убрать Tour.*
 
             req.getSession().setAttribute("sqlstr", "SELECT * FROM Form WHERE client_id='"+req.getParameter("clientid")+"'");
 

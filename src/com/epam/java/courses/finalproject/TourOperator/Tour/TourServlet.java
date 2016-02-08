@@ -10,18 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
 
-/**
- * Created by maria on 27.01.16.
- */
 @WebServlet("/tours")
 public class TourServlet extends HttpServlet {
-    private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
-
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,22 +37,5 @@ public class TourServlet extends HttpServlet {
             Logger4j.log.error("Connection to DB exception. ", e);
         }
 
-    }
-
-    private Connection getConnection(HttpServletRequest req) {
-        Connection connection = (Connection) req.getAttribute("connection");
-        return (connection == null) ? getConnection(): connection;
-    }
-
-//    private Connection getConnection() {
-//        return Pool.getInstance().getConnection();
-//    }
-
-    private Connection getConnection() {
-        try {
-            return Utils.localJndiSearch(JDBC_TEST_DB, DataSource.class).getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

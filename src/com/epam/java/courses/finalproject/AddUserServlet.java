@@ -37,7 +37,7 @@ public class AddUserServlet extends HttpServlet {
                 se.setAttribute("con", con);
 
                 Client.addClient(con, client.getName(), client.getMiddleName(), client.getSurname(),
-                        client.getPassport(), req.getParameter("clientpassword")); //todo
+                        client.getPassport(), req.getParameter("clientpassword"));
 
                 req.getSession().setAttribute("passport", "'"+client.getPassport()+"'");
 

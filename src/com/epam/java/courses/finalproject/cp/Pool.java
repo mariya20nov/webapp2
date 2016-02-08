@@ -13,7 +13,6 @@ import java.util.*;
 public class Pool {
 
     public static final int GET_CONNECTION_MILLIS = 1000;
-    //public static final String PROPERTIES_PATH = "C:\\Users\\Vyacheslav_Lapin\\Projects\\experiments\\webtest\\web\\WEB-INF\\pool-config.properties";
     public static final String PROPERTIES_PATH = "/home/maria/IdeaProjects/webapp2/web/WEB-INF/pool-config.properties";
     private static Pool INSTANCE;
 

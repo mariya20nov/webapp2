@@ -13,13 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
-/**
- * Created by maria on 01.02.16.
- */
 @WebServlet("/deletetour")
 public class DeleteTourServlet extends HttpServlet {
 
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

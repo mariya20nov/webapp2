@@ -1,8 +1,5 @@
 package com.epam.java.courses.finalproject;
 
-/**
- * Created by maria on 02.02.16.
- */
 import org.apache.log4j.Logger;
 
 public class Logger4j {

@@ -16,11 +16,7 @@ import java.sql.*;
 
 @WebServlet("/addtourcount")
 public class AddTourCountServlet extends HttpServlet {
-    //private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";
-    //todo считывать
-    //private static final String INSERT_NEW_CLIENT = "INSERT INTO Client(name, middle_name, surname, passport, tour_count) VALUES('Пётр','Петрович','Петров','4013234567',0);";
-    //private static String CHANGE_CLIENT = "INSERT FROM Client(name, middle_name, surname, passport, tour_count) VALUES(";
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,9 +33,6 @@ public class AddTourCountServlet extends HttpServlet {
         try {
             con = (Connection) req.getSession().getAttribute("con");
 
-            //todo проверка Integer.parseInt(req.getParameter("clientid"))
-            //System.out.println(req.getParameter("clientid"));
-            //System.out.println(req.getParameter("tourcounttoadd"));
             Client.addTourCount(con, new Integer(req.getParameter("clientid")),  new Integer(req.getParameter("tourcounttoadd")));
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/touroperator/client/clients.jsp");

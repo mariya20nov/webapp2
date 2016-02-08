@@ -14,12 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
-/**
- * Created by maria on 01.02.16.
- */
 @WebServlet("/buytour")
 public class BuyTourServlet extends HttpServlet {
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,7 +34,6 @@ public class BuyTourServlet extends HttpServlet {
             con = (Connection) req.getSession().getAttribute("con");
 
             Form.addForm(con, Integer.parseInt((String)req.getSession().getAttribute("Client")), new Integer(req.getParameter("tourid")));
-            //todo add tour count   see in AddTourCountServlet
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/client/ordinaryclient.jsp");
             requestDispatcher.forward(req, resp);

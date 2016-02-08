@@ -19,7 +19,7 @@ import java.util.Properties;
 
 @WebServlet("/ordinaryclient")
 public class FindTourForClientServlet extends HttpServlet {
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +30,6 @@ public class FindTourForClientServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
 
-        //загрузка проперти-файла для логера //todo проверить
         Properties property = new Properties();
         try(InputStream fis = TourOperatorServlet.class.getClassLoader().getResourceAsStream("log4j.properties")) {
             property.load(fis);
@@ -46,8 +45,6 @@ public class FindTourForClientServlet extends HttpServlet {
 
         try {
             con = (Connection) req.getSession().getAttribute("con");
-
-            //todo убрать Tour.*
 
             String sqlstr = "";
 

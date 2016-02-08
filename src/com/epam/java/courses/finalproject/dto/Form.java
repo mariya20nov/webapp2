@@ -74,6 +74,8 @@ public class Form {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            Client.addTourCount(con, client_id, 1);
         }catch (SQLException e) {
             Logger4j.log.error("Create statement exception ", e);
         }
@@ -84,6 +86,14 @@ public class Form {
         String sql = "DELETE FROM Form WHERE form_id=?;";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
+            int client_id = 0;
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Form WHERE form_id=" + form_id);
+            while (rs.next()) {
+                client_id = rs.getInt("client_id");
+            }
+            Client.addTourCount(con, client_id, -1);
+
             ps.setInt(1, form_id);
             ps.executeUpdate();
         } catch (Exception e){

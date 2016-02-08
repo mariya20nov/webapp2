@@ -30,11 +30,6 @@ public class LoginServlet extends HttpServlet {
         if (request.getParameter("j_username").equals("tomcat")) {
             request.login("tomcat", request.getParameter("j_password"));
 
-            ////////////////
-            //HttpSession se = request.getSession(true);
-            //se.setAttribute("con", con);
-            ////////////////
-
             requestDispatcher = request.getRequestDispatcher("/main");
         }
         else {
@@ -54,18 +49,13 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
 
-
-                ////////////////
                 HttpSession se = request.getSession(true);
                 se.setAttribute("con", con);
                 se.setAttribute("client", request.getParameter("j_username"));
                 se.setAttribute("clientname", name + " " + surname);
-                ////////////////
 
 
-            } /*catch (ClassNotFoundException e) {
-                Logger4j.log.error("Class.forName(driver) is not found. ", e);
-            }*/ catch (Exception e) {
+            } catch (Exception e) {
                 Logger4j.log.error("Connection to DB exception. ", e);
             }
 

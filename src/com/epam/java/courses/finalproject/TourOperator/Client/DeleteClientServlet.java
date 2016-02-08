@@ -15,10 +15,7 @@ import java.sql.*;
 
 @WebServlet("/deleteclient")
 public class DeleteClientServlet extends HttpServlet {
-    //todo считывать
-    /*private static final String DELETE_CLIENT = "DELETE FROM Client WHERE client_id=2;";
-    private static final String GET_ALL_CLIENTS = "SELECT * FROM Client;";//todo*/
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

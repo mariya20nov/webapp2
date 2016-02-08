@@ -17,7 +17,7 @@ import java.sql.*;
 
 @WebServlet("/changetour")
 public class ChangeTourServlet extends HttpServlet {
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,8 +34,6 @@ public class ChangeTourServlet extends HttpServlet {
         try {
             con = (Connection) req.getSession().getAttribute("con");
 
-            //todo проверка Integer.parseInt(req.getParameter("clientid"))
-            //System.out.println(req.getParameter(""));
             Tour.changeTour(con, new Integer(req.getParameter("tourid")), new Integer(req.getParameter("cost")));
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/touroperator/tour/tours.jsp");

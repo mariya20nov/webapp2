@@ -19,9 +19,7 @@ import java.util.Properties;
 
 @WebServlet("/touroperator")
 public class TourOperatorServlet extends HttpServlet {
-    private static final String JDBC_TEST_DB = "jdbc/TravelAgency";
-
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

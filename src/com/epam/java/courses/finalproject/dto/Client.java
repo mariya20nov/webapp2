@@ -1,6 +1,8 @@
 package com.epam.java.courses.finalproject.dto;
 
+import com.epam.java.courses.finalproject.Logger4j;
 import com.epam.java.courses.finalproject.Utils;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.Collection;
@@ -58,10 +60,6 @@ public class Client {
         return tour_count;
     }
 
-    public void setId(int id) {
-        this.client_id = id;//todo check duplicates
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -83,6 +81,8 @@ public class Client {
     }
 
     public static void addClient(Connection con, String name, String middle_name, String surname, String passport, String password) {
+        Logger4j.log = Logger.getLogger(Client.class.getName());
+
         String sql = "INSERT INTO Client(name, middle_name, surname, passport, tour_count, pwd) VALUES(?,?,?,?,?,?)";
 
             try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -94,9 +94,8 @@ public class Client {
                 ps.setString(6, password);
                 ps.executeUpdate();
             } catch (Exception e){
-                e.printStackTrace();
+                Logger4j.log.error("Exception in Prepared statement block. ", e);
             }
-
     }
 
     public static void deleteClient(Connection con, int client_id) {
@@ -113,8 +112,6 @@ public class Client {
 
     public static void changeClient(Connection con, int client_id, String name, String middle_name, String surname, String passport) {
         int i = 0;
-
-        //todo проверка id int
 
         String sql = "UPDATE Client SET ";
 
@@ -137,7 +134,7 @@ public class Client {
             sql += " passport=?";
             i++;
         }
-        sql += " WHERE client_id=?;";// + client_id + ";";
+        sql += " WHERE client_id=?;";
         System.out.println(sql);
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -167,7 +164,6 @@ public class Client {
     }
 
     public static void addTourCount(Connection con, int client_id, int number) {
-        //todo проверка id int
         int tourCount;
 
         String sql = "SELECT * FROM Client where client_id=" + client_id + ";";
@@ -178,7 +174,6 @@ public class Client {
             ResultSet set = statement.executeQuery(sql);
             set.next();
             {
-                //System.out.println("tour count: " + set.getInt("tour_count"));
                 tourCount = set.getInt("tour_count") + number;
             }
 

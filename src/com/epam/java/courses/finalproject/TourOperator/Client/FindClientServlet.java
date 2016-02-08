@@ -15,7 +15,7 @@ import java.sql.*;
 
 @WebServlet("/findclient")
 public class FindClientServlet extends HttpServlet {
-    Connection con;//mk
+    Connection con;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
