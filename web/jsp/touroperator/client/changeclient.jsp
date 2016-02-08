@@ -32,9 +32,9 @@
         </c:forEach>
     </select>
 
-    <p> Surname </p> <input type="text" name="clientsurname" value="" size=15 maxlength=20>
-    <p> Name </p> <input type="text" name="clientname" value="" size=15 maxlength=20></td>
-    <p> Middle name </p> <input type="text" name="clientmiddlename" value="" size=15 maxlength=20></td>
+    <p> Surname </p> <input type="text" name="clientsurname" value="" size=15 maxlength=30>
+    <p> Name </p> <input type="text" name="clientname" value="" size=15 maxlength=30></td>
+    <p> Middle name </p> <input type="text" name="clientmiddlename" value="" size=15 maxlength=30></td>
     <p> Passport </p> <input type="text" name="clientpassport" value="" size=25  maxlength=10>
 
     <input type="submit" value="Change">

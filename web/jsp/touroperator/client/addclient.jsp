@@ -11,9 +11,9 @@
 <form action="/addclient" method=post style="position:absolute; top:7%;">
     <p style="font-size:30px"> New client</p>
 
-    <p> Surname </p> <input type="text" name="clientsurname" value="" size=15 maxlength=20>
-    <p> Name </p> <input type="text" name="clientname" value="" size=15 maxlength=20>
-    <p> Middle name </p> <input type="text" name="clientmiddlename" value="" size=15 maxlength=20>
+    <p> Surname </p> <input type="text" name="clientsurname" value="" size=15 maxlength=30>
+    <p> Name </p> <input type="text" name="clientname" value="" size=15 maxlength=30>
+    <p> Middle name </p> <input type="text" name="clientmiddlename" value="" size=15 maxlength=30>
     <p> Passport </p> <input type="text" name="clientpassport" value="" size=25  maxlength=10>
 
     <input type="submit" value="Add">

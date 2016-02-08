@@ -40,7 +40,7 @@
         <option value="3">Отдых</option>
     </select></td>
 
-    <p> Name </p> <input type="text" name="name" value="" size=15 maxlength=20></td>
+    <p> Name </p> <input type="text" name="name" value="" size=15 maxlength=50></td>
 
     <p> Date of beginning </p>
             <select name="begday">

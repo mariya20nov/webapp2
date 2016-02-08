@@ -10,9 +10,9 @@
 <form action="/addresort" method=post  style="position:absolute; top:7%;">
     <p style="font-size:30px"> New resort</p>
 
-    <p> Name </p> <input type="text" name="name" value="" size=15 maxlength=20>
+    <p> Name </p> <input type="text" name="name" value="" size=15 maxlength=30>
     <p> Country </p> <input type="text" name="country" value="" size=15 maxlength=20>
-    <p> Location </p> <input type="text" name="location" value="" size=15 maxlength=20>
+    <p> Location </p> <input type="text" name="location" value="" size=15 maxlength=30>
 
     <input type="submit" value="Add">
 </form>
