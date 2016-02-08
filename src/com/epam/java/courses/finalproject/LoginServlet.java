@@ -43,10 +43,15 @@ public class LoginServlet extends HttpServlet {
 
                 Statement statement = con.createStatement();
 
+                String name = "", surname = "";
+
                 ResultSet set = statement.executeQuery("SELECT * FROM Client WHERE client_id='" + request.getParameter("j_username") + "';");
                 while(set.next()) {
-                    if(set.getString("pwd").equals(request.getParameter("j_password")))
+                    if(set.getString("pwd").equals(request.getParameter("j_password"))) {
                         rightPwd = true;
+                        name = set.getString("name");
+                        surname = set.getString("surname");
+                    }
                 }
 
 
@@ -54,6 +59,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession se = request.getSession(true);
                 se.setAttribute("con", con);
                 se.setAttribute("client", request.getParameter("j_username"));
+                se.setAttribute("clientname", name + " " + surname);
                 ////////////////
 
 

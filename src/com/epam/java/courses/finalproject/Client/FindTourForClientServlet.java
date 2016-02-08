@@ -68,7 +68,7 @@ public class FindTourForClientServlet extends HttpServlet {
             }
 
             req.getSession().setAttribute("sqlstr", sqlstr);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/Client/ordinaryclient2.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/client/ordinaryclient2.jsp");
             dispatcher.forward(req, resp);
 
         } catch (Exception e) {

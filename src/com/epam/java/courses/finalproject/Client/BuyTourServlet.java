@@ -39,7 +39,7 @@ public class BuyTourServlet extends HttpServlet {
             Form.addForm(con, Integer.parseInt((String)req.getSession().getAttribute("Client")), new Integer(req.getParameter("tourid")));
             //todo add tour count   see in AddTourCountServlet
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/Client/ordinaryclient.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/client/ordinaryclient.jsp");
             requestDispatcher.forward(req, resp);
 
         } catch (Exception e) {

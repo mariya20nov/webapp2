@@ -38,7 +38,7 @@ public class RefuseTourServlet extends HttpServlet {
             Form.deleteForm(con, Integer.parseInt(req.getParameter("formid")));
             // todo minus tour count
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/Client/showtours.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/client/showtours.jsp");
             requestDispatcher.forward(req, resp);
 
         } catch (Exception e) {

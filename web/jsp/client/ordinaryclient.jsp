@@ -1,3 +1,5 @@
+<%@ taglib uri="/WEB-INF/TLD.tld" prefix="ct" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -74,5 +76,6 @@
     </select> </div>
 </form>
 
+<p> You logined as <ct:nametag name="${sessionScope.clientname}"/></p>
 </body>
 </html>
