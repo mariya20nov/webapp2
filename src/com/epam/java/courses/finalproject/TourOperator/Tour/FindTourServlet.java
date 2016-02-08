@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for looking for tours via operator API
+ */
 @WebServlet("/findtour")
 public class FindTourServlet extends HttpServlet {
     Connection con;

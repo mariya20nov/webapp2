@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class for adding new forms via operator API
+ */
 @WebServlet("/addform")
 public class AddFormServlet extends HttpServlet {
     Connection con;

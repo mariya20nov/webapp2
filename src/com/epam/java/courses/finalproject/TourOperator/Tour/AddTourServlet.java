@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for adding new tours via operator API
+ */
 @WebServlet("/addtour")
 public class AddTourServlet extends HttpServlet {
     Connection con;

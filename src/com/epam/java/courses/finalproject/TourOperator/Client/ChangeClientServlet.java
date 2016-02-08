@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for changing information about clients via operator API
+ */
 @WebServlet("/changeclient")
 public class ChangeClientServlet extends HttpServlet {
     Connection con;

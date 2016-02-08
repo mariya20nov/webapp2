@@ -1,6 +1,5 @@
 package com.epam.java.courses.finalproject.TourOperator.Tour;
 
-
 import com.epam.java.courses.finalproject.Logger4j;
 import com.epam.java.courses.finalproject.TourOperator.Client.ChangeClientServlet;
 import com.epam.java.courses.finalproject.dto.Tour;
@@ -15,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for changing tours via operator API
+ */
 @WebServlet("/changetour")
 public class ChangeTourServlet extends HttpServlet {
     Connection con;

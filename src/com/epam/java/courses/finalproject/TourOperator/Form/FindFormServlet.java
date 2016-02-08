@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for looking for forms via operator API
+ */
 @WebServlet("/findform")
 public class FindFormServlet extends HttpServlet {
     Connection con;

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class for deleting forms via operator API
+ */
 @WebServlet("/deleteform")
 public class DeleteFormServlet extends HttpServlet {
 

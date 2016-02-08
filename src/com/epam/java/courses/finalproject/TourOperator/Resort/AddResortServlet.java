@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class for adding new resorts via operator API
+ */
 @WebServlet("/addresort")
 public class AddResortServlet extends HttpServlet {
     Connection con;

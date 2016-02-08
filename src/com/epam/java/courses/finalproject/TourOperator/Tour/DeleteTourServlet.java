@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class for deleting tours via operator API
+ */
 @WebServlet("/deletetour")
 public class DeleteTourServlet extends HttpServlet {
 

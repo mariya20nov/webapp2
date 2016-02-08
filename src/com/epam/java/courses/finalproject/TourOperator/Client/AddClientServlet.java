@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for adding new client via operator API
+ */
 @WebServlet("/addclient")
 public class AddClientServlet extends HttpServlet {
     Connection con;

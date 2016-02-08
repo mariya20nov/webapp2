@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class for deleting resorts via operator API
+ */
 @WebServlet("/deleteresort")
 public class DeleteResortServlet extends HttpServlet {
 

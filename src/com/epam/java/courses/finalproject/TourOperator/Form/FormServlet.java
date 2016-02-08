@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Collection;
 
+/**
+ * Class for getting data about forms via operator API
+ */
 @WebServlet("/forms")
 public class FormServlet extends HttpServlet {
     private static final String GET_ALL_FORMS = "SELECT * FROM Form;";

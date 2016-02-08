@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class for looking for resorts via operator API
+ */
 @WebServlet("/findresort")
 public class FindResortServlet extends HttpServlet {
     Connection con;

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for deleting clients via operator API
+ */
 @WebServlet("/deleteclient")
 public class DeleteClientServlet extends HttpServlet {
     Connection con;

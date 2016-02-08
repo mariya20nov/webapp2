@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class for looking for clients via operator API
+ */
 @WebServlet("/findclient")
 public class FindClientServlet extends HttpServlet {
     Connection con;
