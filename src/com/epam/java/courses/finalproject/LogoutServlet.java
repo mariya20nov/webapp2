@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class to log out
+ */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 

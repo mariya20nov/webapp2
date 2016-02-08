@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class to log in
+ */
 @WebServlet("/j_security_check")
 public class LoginServlet extends HttpServlet {
 

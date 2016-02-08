@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 /**
- *
+ * Class for adding new form via ordinary client API
  */
 @WebServlet("/buytour")
 public class BuyTourServlet extends HttpServlet {

@@ -7,6 +7,9 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+/**
+ * Class of the handler of user tag
+ */
 public class NameTag extends TagSupport{
     private String name;
 

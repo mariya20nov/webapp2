@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class for a new user registration via client API
+ */
 @WebServlet("/adduser")
 public class AddUserServlet extends HttpServlet {
 

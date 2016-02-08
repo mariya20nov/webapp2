@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 /**
- * Created by maria on 01.02.16.
+ * Class for deleting form via ordinary client API
  */
 @WebServlet("/refusetour")
 public class RefuseTourServlet extends HttpServlet {

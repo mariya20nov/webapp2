@@ -17,6 +17,9 @@ import java.nio.file.NoSuchFileException;
 import java.sql.*;
 import java.util.Properties;
 
+/**
+ * Class for looking for tours via ordinary client API
+ */
 @WebServlet("/ordinaryclient")
 public class FindTourForClientServlet extends HttpServlet {
     Connection con;
