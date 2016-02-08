@@ -5,7 +5,7 @@ import com.epam.java.courses.finalproject.Logger4j;
 import java.sql.*;
 
 /**
- * Created by maria on 27.01.16.
+ * Class for connecting to database table Form
  */
 public class Form {
 
@@ -43,8 +43,12 @@ public class Form {
         return discount;
     }
 
-    //todo change delete
-
+    /**
+     * Method for adding new form
+     * @param con connection to DB
+     * @param client_id
+     * @param tour_id
+     */
     public static void addForm(Connection con, int client_id, int tour_id) {
         String sql = "SELECT * FROM Client WHERE client_id='" + client_id + "'";
         int tourCount = 0;
@@ -82,6 +86,11 @@ public class Form {
 
     }
 
+    /**
+     * Method for deleting form
+     * @param con connection to DB
+     * @param form_id
+     */
     public static void deleteForm(Connection con, int form_id) {
         String sql = "DELETE FROM Form WHERE form_id=?;";
 

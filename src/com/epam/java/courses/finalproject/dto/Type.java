@@ -1,7 +1,7 @@
 package com.epam.java.courses.finalproject.dto;
 
 /**
- * Created by maria on 27.01.16.
+ * Class for connecting to database table Type
  */
 public class Type {
 
@@ -10,7 +10,13 @@ public class Type {
 
     @NotNull
     @Size(20)
+    /**
+     * name: "Шоппинг", "Экскурсия" or "Отдых"
+     */
     private String name;
+
+    public Type() {
+    }
 
     public int getId(){
         return type_id;

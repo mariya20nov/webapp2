@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.Collection;
 
+/**
+ * Class for connecting to database table Class
+ */
 public class Client {
 
     @NotNull
@@ -80,6 +83,15 @@ public class Client {
         this.tour_count = tour_count;
     }
 
+    /**
+     * Method for adding a new client
+     * @param con connection to DB
+     * @param name
+     * @param middle_name
+     * @param surname
+     * @param passport
+     * @param password to log in this webapp
+     */
     public static void addClient(Connection con, String name, String middle_name, String surname, String passport, String password) {
         Logger4j.log = Logger.getLogger(Client.class.getName());
 
@@ -98,6 +110,11 @@ public class Client {
             }
     }
 
+    /**
+     * Method for deleting client
+     * @param con connection to DB
+     * @param client_id
+     */
     public static void deleteClient(Connection con, int client_id) {
         String sql = "DELETE FROM Client WHERE client_id=?;";
 
@@ -110,6 +127,15 @@ public class Client {
 
     }
 
+    /**
+     * Method for changing data about clients
+     * @param con connection to DB
+     * @param client_id ID of client you want to change
+     * @param name new name (if empty - without any changes)
+     * @param middle_name new middle name (if empty - without any changes)
+     * @param surname new surname (if empty - without any changes)
+     * @param passport new passport number (if empty - without any changes)
+     */
     public static void changeClient(Connection con, int client_id, String name, String middle_name, String surname, String passport) {
         int i = 0;
 
@@ -163,6 +189,12 @@ public class Client {
 
     }
 
+    /**
+     * Method for changing tour counter for clients
+     * @param con connection to DB
+     * @param client_id
+     * @param number how much tours we should add to tour counter
+     */
     public static void addTourCount(Connection con, int client_id, int number) {
         int tourCount;
 
@@ -193,6 +225,12 @@ public class Client {
 
     }
 
+    /**
+     * Method for looking for clients by surname
+     * @param con connection to DB
+     * @param surname
+     * @return
+     */
     public static Collection<Client> findClient(Connection con, String surname) {
 
         String sql = "SELECT * FROM Client where surname='" + surname + "';";
@@ -210,6 +248,12 @@ public class Client {
         return null; //todo ?
     }
 
+    /**
+     * Method for sorting clients
+     * @param con connection to DB
+     * @param sortBy ID/surname/...
+     * @return
+     */
     public static Collection<Client> sortClients(Connection con, String sortBy) {
 
         String sql = "SELECT * FROM Client ORDER BY " + sortBy + ";";
@@ -227,7 +271,4 @@ public class Client {
         return null; //todo ?
     }
 
-
-
-    //todo change delete
 }

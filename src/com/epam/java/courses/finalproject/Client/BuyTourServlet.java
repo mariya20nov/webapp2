@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ *
+ */
 @WebServlet("/buytour")
 public class BuyTourServlet extends HttpServlet {
     Connection con;

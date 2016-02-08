@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 
 /**
- * Created by maria on 27.01.16.
+ * Class for connecting to database table Tour
  */
 public class Tour {
 
@@ -55,8 +55,16 @@ public class Tour {
         return cost;
     }
 
-    //todo change delete
-
+    /**
+     * Method for adding new tour
+     * @param con connection to DB
+     * @param resort_id
+     * @param type_id
+     * @param name name of the tour
+     * @param date_beg start date
+     * @param date_end end date
+     * @param cost
+     */
     public static void addTour(Connection con, int resort_id, int type_id, String name,
                                Timestamp date_beg, Timestamp date_end, int cost) {
         String sql = "INSERT INTO Tour(resort_id, type_id, name, date_beg, date_end, cost) VALUES(?,?,?,?,?,?)";
@@ -75,6 +83,11 @@ public class Tour {
 
     }
 
+    /**
+     * Method for deleting tour
+     * @param con connection to DB
+     * @param tour_id ID of tour you want to delete
+     */
     public static void deleteTour(Connection con, int tour_id) {
         String sql = "DELETE FROM Tour WHERE tour_id=?;";
 
@@ -87,6 +100,11 @@ public class Tour {
 
     }
 
+    /**
+     * Method for marking tour as hot
+     * @param con connection to DB
+     * @param tour_id ID of tour you want to mark as hot
+     */
     public static void markAsHot(Connection con, int tour_id) {
         String sql = "UPDATE Tour SET hot=TRUE WHERE tour_id=?;";
 
@@ -99,6 +117,12 @@ public class Tour {
 
     }
 
+    /**
+     * Method for changing tour cost
+     * @param con connection to DB
+     * @param tour_id ID of tour you want to change
+     * @param cost new cost
+     */
     public static void changeTour(Connection con, int tour_id, int cost) {
         int i = 0;
 

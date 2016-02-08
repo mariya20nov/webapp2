@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 /**
- * Created by maria on 27.01.16.
+ * Class for connecting to database table Resort
  */
 public class Resort {
 
@@ -36,8 +36,13 @@ public class Resort {
         return location;
     }
 
-    //todo change delete
-
+    /**
+     *  Method for adding a new resort
+     * @param con connection to DB
+     * @param name name of the resort
+     * @param country
+     * @param location city/town/country
+     */
     public static void addResort(Connection con, String name, String country, String location) {
         String sql = "INSERT INTO Resort(name, country, location) VALUES(?,?,?)";
 
@@ -52,6 +57,11 @@ public class Resort {
 
     }
 
+    /**
+     * Method for deleting resort
+     * @param con connection to DB
+     * @param resort_id ID of resort you want to delete
+     */
     public static void deleteResort(Connection con, int resort_id) {
         String sql = "DELETE FROM Resort WHERE resort_id=?;";
 
