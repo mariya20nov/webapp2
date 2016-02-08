@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
         RequestDispatcher requestDispatcher;
 
-        if (request.getParameter("j_username").equals("tomcat")) {
+        if (request.getParameter("j_username").equals("operator") || request.getParameter("j_username").equals("tomcat")) {
             request.login("tomcat", request.getParameter("j_password"));
 
             requestDispatcher = request.getRequestDispatcher("/main");
